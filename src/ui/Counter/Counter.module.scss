@@ -1,0 +1,26 @@
+.Counter {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.quantity {
+  font-size: 130%;
+  margin: 10%;
+}
+
+.minus {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fb923c;
+  border-radius: 5px;
+}
+
+.plus {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 5px;
+  background: #54be60;
+}

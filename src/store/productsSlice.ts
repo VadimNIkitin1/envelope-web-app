@@ -8,6 +8,7 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: IProducts = {
   products: [],
+  product: null,
   loading: false,
   error: null,
 };
@@ -24,23 +25,11 @@ export const getProducts = createAsyncThunk<IProduct[], undefined, { rejectValue
   }
 );
 
-export const getProductById = createAsyncThunk<IProduct[], number, { rejectValue: string }>(
+export const getProductById = createAsyncThunk<IProduct, number, { rejectValue: string }>(
   'products/getProductById',
   async (id, { rejectWithValue }) => {
     try {
       const res = await axios.get(`products/${id}`);
-      return res.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const deleteProduct = createAsyncThunk<IProduct, number, { rejectValue: string }>(
-  'products/deleteProduct',
-  async (id, { rejectWithValue }) => {
-    try {
-      const res = await axios.delete(`products/?products_id=${id}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -60,6 +49,15 @@ const slice = createSlice({
       })
       .addCase(getProducts.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(getProductById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getProductById.fulfilled, (state, action) => {
+        state.product = action.payload;
         state.loading = false;
         state.error = null;
       })

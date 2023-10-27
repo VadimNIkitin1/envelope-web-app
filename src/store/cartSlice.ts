@@ -8,6 +8,8 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: ICart = {
   cart: [],
+  totalPrice: 0,
+  quantity: 0,
   loading: false,
   error: null,
 };
@@ -17,6 +19,34 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get(`cart-items/`);
+      return res.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const addProduct = createAsyncThunk<IProduct, number, { rejectValue: string }>(
+  'cart/addProduct',
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await axios.post(`products/add-to-cart/`, {
+        product_id: id,
+      });
+      dispatch(incrementQuantity());
+      return res.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk<IProduct, number, { rejectValue: string }>(
+  'cart/deleteProduct',
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await axios.delete(`products/?products_id=${id}`);
+      dispatch(decrementQuantity());
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -63,7 +93,14 @@ export const sendOrder = createAsyncThunk<IProducts, undefined, { rejectValue: s
 const slice = createSlice({
   name: 'cart',
   initialState,
-  reducers: {},
+  reducers: {
+    incrementQuantity(state) {
+      state.quantity = state.quantity + 1;
+    },
+    decrementQuantity(state) {
+      state.quantity = state.quantity - 1;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getCart.pending, (state) => {
@@ -91,6 +128,22 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
+      .addCase(addProduct.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addProduct.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(deleteProduct.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(deleteProduct.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
       .addCase(sendOrder.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -109,5 +162,7 @@ const slice = createSlice({
 const isError = (action: AnyAction) => {
   return action.type.endsWith('rejected');
 };
+
+export const { incrementQuantity, decrementQuantity } = slice.actions;
 
 export default slice.reducer;

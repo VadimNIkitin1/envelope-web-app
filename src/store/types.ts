@@ -25,12 +25,15 @@ export interface IProduct {
 
 export interface IProducts {
   products: IProduct[];
+  product: IProduct | null;
   loading: boolean;
   error: string | null;
 }
 
 export interface ICart {
   cart: IProduct[];
+  totalPrice: number;
+  quantity: number;
   loading: boolean;
   error: string | null;
 }
