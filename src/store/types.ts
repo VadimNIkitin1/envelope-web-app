@@ -10,6 +10,12 @@ export interface ICategories {
   error: string | null;
 }
 
+export interface ICartItem {
+  product: IProduct;
+  quantity: number;
+  total_price: number;
+}
+
 export interface IProduct {
   id: number;
   category_id: number;

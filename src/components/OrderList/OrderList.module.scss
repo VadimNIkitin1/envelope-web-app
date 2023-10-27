@@ -1,0 +1,19 @@
+.container {
+  padding: 10px 15px;
+}
+
+.orderTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: self-end;
+  color: #a6a6a6;
+}
+
+.deliveryText {
+  color: white;
+  background-color: #5fa5f9;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px;
+  margin: 3px 0;
+}

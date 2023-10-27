@@ -14,6 +14,14 @@ const initialState: ICart = {
   error: null,
 };
 
+export interface ISubmitForm {
+  items: IProduct[];
+  name: string;
+  phone: number;
+  user_id: number;
+  initDataHash: string | null;
+}
+
 export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: string }>(
   'cart/getCart',
   async (_, { rejectWithValue }) => {
@@ -78,7 +86,7 @@ export const getCartTotalPrice = createAsyncThunk<string, undefined, { rejectVal
   }
 );
 
-export const sendOrder = createAsyncThunk<IProducts, undefined, { rejectValue: string }>(
+export const sendOrder = createAsyncThunk<string, ISubmitForm, { rejectValue: string }>(
   'cart/sendOrder ',
   async (order, { rejectWithValue }) => {
     try {

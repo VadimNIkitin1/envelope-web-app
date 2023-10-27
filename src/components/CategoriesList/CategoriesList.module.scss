@@ -1,0 +1,10 @@
+.list {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--tg-theme-bg-color);
+  padding: 0 15px;
+  flex-wrap: wrap;
+}

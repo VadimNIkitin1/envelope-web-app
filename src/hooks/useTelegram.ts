@@ -7,7 +7,7 @@ export const useTelegram = () => {
     tg.close();
   };
 
-  let initData = new URLSearchParams(tg?.initData);
+  const initData = new URLSearchParams(tg?.initData);
   const initDataHash = initData.get('hash');
 
   const onToggleBackButton = (cb: any) => {

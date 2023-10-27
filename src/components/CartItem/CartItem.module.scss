@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  padding: 5px 15px 5px 15px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image {
+  width: 85px;
+  height: 85px;
+  margin: 5px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}

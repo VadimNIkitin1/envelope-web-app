@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 const TrashButton: FC = (props) => {
   return (
-    <button className={style.button} {...props}>
+    <button className={style.button} onClick={props.onClick} {...props}>
       <BsFillTrashFill />
     </button>
   );
