@@ -1,40 +1,53 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
+import { ICategories, ICategory } from './types';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://swarovskidmitrii.ru/api/v1';
+axios.defaults.baseURL = 'https://swarovskidmitrii.ru/api/v1/';
 axios.defaults.withCredentials = true;
+axios.defaults.headers['Content-Type'] = 'application/json';
 
-export const getCategories = createAsyncThunk(
+const initialState: ICategories = {
+  categories: [],
+  loading: false,
+  error: null,
+};
+
+export const getCategories = createAsyncThunk<ICategory[], undefined, { rejectValue: string }>(
   'categories/getCategories',
   async (_, { rejectWithValue }) => {
     try {
-    } catch (error) {}
-  },
+      const res = await axios.get(`categories/`);
+      return res.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
 );
 
 const slice = createSlice({
   name: 'categories',
-  initialState: {
-    categories: [],
-    status: null,
-    error: null,
-  },
+  initialState,
   reducers: {},
-  extraReducers: {
-    // [fetchCategories.pending]: state => {
-    //   state.status = 'loading';
-    //   state.error = null;
-    // },
-    // [fetchCategories.fulfilled]: (state, action) => {
-    //   state.status = 'resolved';
-    //   state.error = null;
-    //   state.categories = action.payload;
-    // },
-    // [fetchCategories.rejected]: (state, action) => {
-    //   state.status = 'rejected';
-    //   state.error = action.payload;
-    // },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCategories.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addMatcher(isError, (state, action: PayloadAction<string>) => {
+        state.error = action.payload;
+        state.loading = false;
+      });
   },
 });
+
+const isError = (action: AnyAction) => {
+  return action.type.endsWith('rejected');
+};
 
 export default slice.reducer;
