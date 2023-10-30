@@ -1,4 +1,4 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom';
 
 import FormPage from './pages/FormPage/FormPage';
 import ProductPage from './pages/ProductPage/ProductPage';

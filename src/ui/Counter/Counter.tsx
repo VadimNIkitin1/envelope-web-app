@@ -4,11 +4,11 @@ import { addProduct, deleteProduct } from '../../store/cartSlice';
 import CounterButton from '../CounterButton/CounterButton';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
-import style from './Counter.module.css';
+import style from './Counter.module.scss';
 
 interface ICounter {
   children: ReactNode;
-  id: number;
+  id: string | undefined;
 }
 
 const Counter: FC<ICounter> = ({ children, id }) => {

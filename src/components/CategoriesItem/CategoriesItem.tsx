@@ -6,7 +6,7 @@ import { ICategory } from '../../store/types';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
-import style from './CategoriesItem.module.css';
+import style from './CategoriesItem.module.scss';
 
 interface ICategoriesItem {
   category: ICategory;

@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
-import { ICart, IProduct, IProducts } from './types';
+import { ICart, IProduct } from './types';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://swarovskidmitrii.ru/api/v1/';
@@ -8,7 +8,7 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: ICart = {
   cart: [],
-  totalPrice: 0,
+  total_price: 0,
   quantity: 0,
   loading: false,
   error: null,
@@ -34,7 +34,7 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
   }
 );
 
-export const addProduct = createAsyncThunk<IProduct, number, { rejectValue: string }>(
+export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejectValue: string }>(
   'cart/addProduct',
   async (id, { rejectWithValue, dispatch }) => {
     try {
@@ -49,18 +49,19 @@ export const addProduct = createAsyncThunk<IProduct, number, { rejectValue: stri
   }
 );
 
-export const deleteProduct = createAsyncThunk<IProduct, number, { rejectValue: string }>(
-  'cart/deleteProduct',
-  async (id, { rejectWithValue, dispatch }) => {
-    try {
-      const res = await axios.delete(`products/?products_id=${id}`);
-      dispatch(decrementQuantity());
-      return res.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response.data);
-    }
+export const deleteProduct = createAsyncThunk<
+  IProduct,
+  string | undefined,
+  { rejectValue: string }
+>('cart/deleteProduct', async (id, { rejectWithValue, dispatch }) => {
+  try {
+    const res = await axios.delete(`products/?products_id=${id}`);
+    dispatch(decrementQuantity());
+    return res.data;
+  } catch (error: any) {
+    return rejectWithValue(error.response.data);
   }
-);
+});
 
 export const clearCart = createAsyncThunk<string, undefined, { rejectValue: string }>(
   'cart/clearCart',

@@ -3,7 +3,7 @@ import { useAppDispatch } from './useAppDispatch';
 import { useAppSelector } from './useAppSelector';
 import { clearCart } from '../store/cartSlice';
 
-export const useCart = (id?: number) => {
+export const useCart = (id?: string) => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.cart);
   const { goBack } = useAppNavigate();

@@ -1,10 +1,14 @@
-import { BsFillTrashFill } from 'react-icons/bs';
-import style from './TrashButton.module.css';
 import { FC } from 'react';
+import { BsFillTrashFill } from 'react-icons/bs';
+import style from './TrashButton.module.scss';
 
-const TrashButton: FC = (props) => {
+interface Props {
+  onClick: () => void;
+}
+
+const TrashButton: FC<Props> = (props: Props) => {
   return (
-    <button className={style.button} onClick={props.onClick} {...props}>
+    <button className={style.button} {...props}>
       <BsFillTrashFill />
     </button>
   );

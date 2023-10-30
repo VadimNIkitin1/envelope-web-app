@@ -7,9 +7,9 @@ import { addProduct } from '../../store/cartSlice';
 import AddButton from '../../ui/AddButton/AddButton';
 import Counter from '../../ui/Counter/Counter';
 
-import style from './ProductItem.module.css';
+import style from './ProductItem.module.scss';
 
-const ProductItem = ({ prod }) => {
+const ProductItem = ({ prod }: any) => {
   const dispatch = useAppDispatch();
   const { cartArr, cartQuantity } = useCart();
   const { name, price, id, webp_image_url } = prod;

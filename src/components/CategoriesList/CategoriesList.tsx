@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks/useAppSelector';
 import CategoriesItem from '../CategoriesItem/CategoriesItem';
 
-import style from './CategoriesList.module.css';
+import style from './CategoriesList.module.scss';
 
 const CategoriesList = () => {
   const categories = useAppSelector((state) => state.categories.categories);

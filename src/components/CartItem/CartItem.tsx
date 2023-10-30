@@ -4,9 +4,9 @@ import Counter from '../../ui/Counter/Counter';
 
 import { textCut } from '../../utils/textCut';
 
-import style from './CartItem.module.css';
+import style from './CartItem.module.scss';
 
-const CartItem: FC<ICartItem> = ({ product, quantity, prodTotalPrice }) => {
+const CartItem: FC<ICartItem> = ({ product, quantity, total_price }) => {
   const { name_rus, price, id } = product;
 
   return (
@@ -17,10 +17,10 @@ const CartItem: FC<ICartItem> = ({ product, quantity, prodTotalPrice }) => {
         <br />
         {price} руб
         <br />
-        Итог {prodTotalPrice}
+        Итог {total_price}
       </p>
       <div style={{ width: '100px', height: '40px' }}>
-        <Counter id={id}>{quantity}</Counter>
+        <Counter id={String(id)}>{quantity}</Counter>
       </div>
     </div>
   );

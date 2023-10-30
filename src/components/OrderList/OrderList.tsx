@@ -6,10 +6,10 @@ import CartItem from '../CartItem/CartItem';
 
 import TrashButton from '../../ui/TrashButton/TrashButton';
 
-import style from './OrderList.module.css';
+import style from './OrderList.module.scss';
 
 const OrderList = () => {
-  const totalPrice = useAppSelector((state) => state.cart.totalPrice);
+  const totalPrice = useAppSelector((state) => state.cart.total_price);
   const cart = useAppSelector((state) => state.cart.cart);
   const { onClear } = useCart();
 
@@ -26,9 +26,9 @@ const OrderList = () => {
           cart.map((prod) => (
             <CartItem
               product={prod}
-              key={prod.product.id}
+              key={prod.id}
               quantity={prod.quantity}
-              prodTotalPrice={prod.total_price}
+              total_price={totalPrice}
             />
           ))
         )}

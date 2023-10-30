@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useTelegram } from '../../hooks/useTelegram';
 
-import style from './OrderForm.module.css';
+import style from './OrderForm.module.scss';
 
 const OrderForm = () => {
   const dispatch = useAppDispatch();
@@ -31,11 +31,6 @@ const OrderForm = () => {
         initDataHash,
       };
 
-      // const dataQuery = {
-      //   queryId,
-      // };
-
-      // await dispatch(onSendQuery(dataQuery));
       dispatch(sendOrder(requestData));
       dispatch(clearCart());
       reset();

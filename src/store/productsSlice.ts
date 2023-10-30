@@ -8,7 +8,16 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: IProducts = {
   products: [],
-  product: null,
+  product: {
+    id: 0,
+    category_id: 0,
+    category_name: '',
+    name_rus: '',
+    description: '',
+    webp_image_url: '',
+    price: 0,
+    quantity: 0,
+  },
   loading: false,
   error: null,
 };
@@ -25,17 +34,18 @@ export const getProducts = createAsyncThunk<IProduct[], undefined, { rejectValue
   }
 );
 
-export const getProductById = createAsyncThunk<IProduct, number, { rejectValue: string }>(
-  'products/getProductById',
-  async (id, { rejectWithValue }) => {
-    try {
-      const res = await axios.get(`products/${id}`);
-      return res.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response.data);
-    }
+export const getProductById = createAsyncThunk<
+  IProduct,
+  string | undefined,
+  { rejectValue: string }
+>('products/getProductById', async (id, { rejectWithValue }) => {
+  try {
+    const res = await axios.get(`products/${id}`);
+    return res.data;
+  } catch (error: any) {
+    return rejectWithValue(error.response.data);
   }
-);
+});
 
 const slice = createSlice({
   name: 'products',

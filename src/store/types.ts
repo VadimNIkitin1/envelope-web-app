@@ -1,7 +1,6 @@
 export interface ICategory {
   id: number;
   name_rus: string;
-  availability: boolean;
 }
 
 export interface ICategories {
@@ -10,35 +9,32 @@ export interface ICategories {
   error: string | null;
 }
 
+export interface IProduct {
+  id: number;
+  category_id: number;
+  category_name: string;
+  name_rus: string;
+  description: string;
+  webp_image_url: string;
+  price: number;
+  quantity: number;
+}
 export interface ICartItem {
   product: IProduct;
   quantity: number;
   total_price: number;
 }
 
-export interface IProduct {
-  id: number;
-  category_id: number;
-  category_name: string;
-  name_rus: string;
-  price: number;
-  availability: boolean;
-  popular: boolean;
-  delivery: boolean;
-  takeaway: boolean;
-  dinein: boolean;
-}
-
 export interface IProducts {
   products: IProduct[];
-  product: IProduct | null;
+  product: IProduct;
   loading: boolean;
   error: string | null;
 }
 
 export interface ICart {
   cart: IProduct[];
-  totalPrice: number;
+  total_price: number;
   quantity: number;
   loading: boolean;
   error: string | null;

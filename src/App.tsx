@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import { useTelegram } from './hooks/useTelegram';
 import { RouterProvider } from 'react-router-dom';
+import { useTelegram } from './hooks/useTelegram';
+import router from './router';
 
 import './App.css';
-
-import router from './router';
 
 function App() {
   const { tg } = useTelegram();
