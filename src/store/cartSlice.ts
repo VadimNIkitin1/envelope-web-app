@@ -2,9 +2,14 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICart, IProduct } from './types';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-ignore
+const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+// const localhost = 'http://localhost:5173/';
+const app_url = 'https://store.envelope-app.ru/';
 const url = window.location.href;
-const schema = url.replace('https://store.envelope-app.ru/', '').replace('/1/', '');
-const store_id = url.replace(`https://store.envelope-app.ru/${schema}/`, '').replace('/', '');
+const schema = url.replace(app_url, '').slice(0, -3);
+const store_id = url.replace(`${app_url + schema}/`, '').slice(0, -1);
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
@@ -29,7 +34,9 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`cart/?schema=${schema}&store_id=${store_id}`);
+      const res = await axios.get(
+        `cart/?schema=${schema}&store_id=${store_id}&tg_user_id=${tg_user_id}`
+      );
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
