@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICategories, ICategory } from './types';
 
-axios.defaults.baseURL = 'https://store.envelope-app.ru/10/1/';
+axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/';
 axios.defaults.withCredentials = true;
 axios.defaults.headers['Content-Type'] = 'application/json';
 

@@ -1,6 +1,6 @@
 export interface ICategory {
   id: number;
-  name_rus: string;
+  name: string;
 }
 
 export interface ICategories {
@@ -13,7 +13,7 @@ export interface IProduct {
   id: number;
   category_id: number;
   category_name: string;
-  name_rus: string;
+  name: string;
   description: string;
   webp_image_url: string;
   price: number;

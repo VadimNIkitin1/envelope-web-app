@@ -12,7 +12,7 @@ const CategoriesList = () => {
         <p className={style.message}>Нет добавленых элементов</p>
       ) : (
         categories.map((category, index) => (
-          <CategoriesItem key={category.name_rus} category={category} index={index} />
+          <CategoriesItem key={category.name} category={category} index={index} />
         ))
       )}
     </div>

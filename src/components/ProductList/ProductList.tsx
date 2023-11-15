@@ -12,7 +12,7 @@ const ProductList = () => {
         <p className={style.message}>Нет добавленых элементов</p>
       ) : (
         categories.map((category) => (
-          <ProductListElement key={category.id} name_rus={category.name_rus} id={category.id} />
+          <ProductListElement key={category.id} name={category.name} id={category.id} />
         ))
       )}
     </div>

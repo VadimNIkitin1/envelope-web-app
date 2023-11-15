@@ -6,14 +6,14 @@ import ProductItem from '../ProductItem/ProductItem.jsx';
 
 import style from './ProductListElement.module.scss';
 
-const ProductListElement: FC<ICategory> = ({ name_rus, id }) => {
+const ProductListElement: FC<ICategory> = ({ name, id }) => {
   const products = useAppSelector((state) => state.products.products);
   const filterProd = products.filter((prod) => prod.category_id === id);
 
   return (
     <div className={style.listElement}>
-      <h3 id={`${name_rus}`} className={style.categoryName}>
-        {name_rus}
+      <h3 id={`${name}`} className={style.categoryName}>
+        {name}
       </h3>
       {filterProd === undefined || filterProd.length === 0 ? (
         <p className={style.message}>Нет добавленых элементов</p>

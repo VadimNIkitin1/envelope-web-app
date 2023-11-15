@@ -12,7 +12,7 @@ const initialState: IProducts = {
     id: 0,
     category_id: 0,
     category_name: '',
-    name_rus: '',
+    name: '',
     description: '',
     webp_image_url: '',
     price: 0,
