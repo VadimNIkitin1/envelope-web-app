@@ -2,13 +2,12 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICategories, ICategory } from './types';
 
-// const localhost = 'http://localhost:5173/';
-const app_url = 'https://store.envelope-app.ru/';
 const url = window.location.href;
-const schema = url.replace(app_url, '').slice(0, -3);
-const store_id = url.replace(`${app_url + schema}/`, '').slice(0, -1);
-console.log(schema);
-console.log(store_id);
+
+const schemaMatch = url.match(/schema=(\d+)/);
+const store_idMatch = url.match(/store_id=(\d+)/);
+const schema = schemaMatch && schemaMatch[1];
+const store_id = store_idMatch && store_idMatch[1];
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
