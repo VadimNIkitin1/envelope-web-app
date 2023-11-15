@@ -66,7 +66,7 @@ export const decreaseProduct = createAsyncThunk<
   IProduct,
   string | undefined,
   { rejectValue: string }
->('cart/deleteProduct', async (data, { rejectWithValue, dispatch }) => {
+>('cart/deleteProduct', async (_, { rejectWithValue, dispatch }) => {
   try {
     const res = await axios.delete(`cart/decrease/?schema=${schema}`, {});
     dispatch(decrementQuantity());
