@@ -6,8 +6,9 @@ import { ICategories, ICategory } from './types';
 const app_url = 'https://store.envelope-app.ru/';
 const url = window.location.href;
 const schema = url.replace(app_url, '').slice(0, -3);
-console.log(schema);
 const store_id = url.replace(`${app_url + schema}/`, '').slice(0, -1);
+console.log(schema);
+console.log(store_id);
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
