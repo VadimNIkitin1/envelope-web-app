@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage/HomePage';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route index path="/" element={<HomePage />} errorElement={<ErrorPage />} />
+      <Route index path="/:schema/:store_id/" element={<HomePage />} errorElement={<ErrorPage />} />
       <Route path={'products/:id'} element={<ProductPage />} />
       <Route path={'form'} element={<FormPage />} errorElement={<ErrorPage />} />
       <Route path="*" element={<NotFoundPage />} />
