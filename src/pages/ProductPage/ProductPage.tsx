@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import { useTelegram } from '../../hooks/useTelegram';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppNavigate } from '../../hooks/useAppNavigate';
+
 import { useCart } from '../../hooks/useCart';
 
 import { getProductById } from '../../store/productsSlice';
@@ -20,21 +19,18 @@ const ProductPage = () => {
   const quantity = useAppSelector((state) => state.cart.quantity);
   const product = useAppSelector((state) => state.products.product);
   const { id } = useParams();
-  const { onToggleBackButton } = useTelegram();
-  const { goBack } = useAppNavigate();
+
   const { targetProd } = useCart(id);
 
   const { description, name_rus, webp_image_url } = product;
 
   useEffect(() => {
     dispatch(getProductById(id));
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     dispatch(getCart());
-  }, [quantity]);
-
-  onToggleBackButton(goBack);
+  }, [dispatch, quantity]);
 
   return (
     <div className={style.productPage}>
