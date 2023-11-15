@@ -2,9 +2,12 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { IProducts, IProduct } from './types';
 
+const url = window.location.href;
+const schema = url.replace('https://store.envelope-app.ru/', '').replace('/1/', '');
+const store_id = url.replace(`https://store.envelope-app.ru/${schema}/`, '').replace('/', '');
+
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
-axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: IProducts = {
   products: [],
@@ -26,7 +29,7 @@ export const getProducts = createAsyncThunk<IProduct[], undefined, { rejectValue
   'products/getProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`product/`);
+      const res = await axios.get(`product/?schema=${schema}&store_id=${store_id}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
