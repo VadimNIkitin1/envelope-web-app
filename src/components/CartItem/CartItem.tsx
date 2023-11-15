@@ -7,13 +7,13 @@ import { textCut } from '../../utils/textCut';
 import style from './CartItem.module.scss';
 
 const CartItem: FC<ICartItem> = ({ product, quantity, total_price }) => {
-  const { name_rus, price, id } = product;
+  const { name, price, id } = product;
 
   return (
     <div className={style.item}>
       <img src={'webp_image_url'} alt="webp_image_url" className={style.image} />
       <p className={style.name}>
-        {textCut(name_rus, 30)}
+        {textCut(name, 30)}
         <br />
         {price} руб
         <br />

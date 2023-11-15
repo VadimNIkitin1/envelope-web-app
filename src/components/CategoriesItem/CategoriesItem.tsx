@@ -20,10 +20,10 @@ const CategoriesItem: FC<ICategoriesItem> = ({ category, index }) => {
   return (
     <a
       className={activeTab === index ? style.categoryActive : style.category}
-      href={`#${category.name_rus}`}
+      href={`#${category.name}`}
       onClick={() => dispatch(toggleTabs(index))}
     >
-      {category.name_rus}
+      {category.name}
     </a>
   );
 };
