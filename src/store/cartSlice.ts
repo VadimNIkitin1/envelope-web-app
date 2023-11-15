@@ -4,13 +4,15 @@ import { ICart, IProduct } from './types';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+export const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+
 const url = window.location.href;
 
 const schemaMatch = url.match(/schema=(\d+)/);
 const store_idMatch = url.match(/store_id=(\d+)/);
 const schema = schemaMatch && schemaMatch[1];
-const store_id = store_idMatch && store_idMatch[1];
+export const store_id = store_idMatch && store_idMatch[1];
+const QUERY = `?schema=${schema}&store_id=${store_id}&tg_user_id=${tg_user_id}`;
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
@@ -35,9 +37,7 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(
-        `cart/?schema=${schema}&store_id=${store_id}&tg_user_id=${tg_user_id}`
-      );
+      const res = await axios.get(`cart/${QUERY}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -47,10 +47,12 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
 
 export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejectValue: string }>(
   'cart/addProduct',
-  async (id, { rejectWithValue, dispatch }) => {
+  async (data, { rejectWithValue, dispatch }) => {
     try {
-      const res = await axios.post(`products/add-to-cart/`, {
-        product_id: id,
+      const res = await axios.post(`cart/add/?schema=${schema}`, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
       dispatch(incrementQuantity());
       return res.data;
@@ -60,13 +62,13 @@ export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejec
   }
 );
 
-export const deleteProduct = createAsyncThunk<
+export const decreaseProduct = createAsyncThunk<
   IProduct,
   string | undefined,
   { rejectValue: string }
->('cart/deleteProduct', async (id, { rejectWithValue, dispatch }) => {
+>('cart/deleteProduct', async (data, { rejectWithValue, dispatch }) => {
   try {
-    const res = await axios.delete(`products/?products_id=${id}`);
+    const res = await axios.delete(`cart/decrease/?schema=${schema}`, {});
     dispatch(decrementQuantity());
     return res.data;
   } catch (error: any) {
@@ -78,7 +80,7 @@ export const clearCart = createAsyncThunk<string, undefined, { rejectValue: stri
   'cart/clearCart',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.delete(`clear-cart/`);
+      const res = await axios.delete(`cart/clear/${QUERY}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -102,7 +104,7 @@ export const sendOrder = createAsyncThunk<string, ISubmitForm, { rejectValue: st
   'cart/sendOrder ',
   async (order, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`orders/create/`, order);
+      const res = await axios.post(`cart/order/${QUERY}`, order);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -156,11 +158,11 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(deleteProduct.pending, (state) => {
+      .addCase(decreaseProduct.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(deleteProduct.fulfilled, (state) => {
+      .addCase(decreaseProduct.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
       })

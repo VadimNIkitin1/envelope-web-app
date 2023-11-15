@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { addProduct, deleteProduct } from '../../store/cartSlice';
+import { addProduct, decreaseProduct } from '../../store/cartSlice';
 
 import CounterButton from '../CounterButton/CounterButton';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -18,7 +18,7 @@ const Counter: FC<ICounter> = ({ children, id }) => {
       <CounterButton
         children={'➖'}
         className={style.minus}
-        onClick={() => dispatch(deleteProduct(id))}
+        onClick={() => dispatch(decreaseProduct(id))}
       />
       <p className={style.quantity}>{children}</p>
       <CounterButton

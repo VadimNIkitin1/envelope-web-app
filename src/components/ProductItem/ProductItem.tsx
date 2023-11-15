@@ -6,6 +6,7 @@ import { textCut } from '../../utils/textCut';
 import { addProduct } from '../../store/cartSlice';
 import AddButton from '../../ui/AddButton/AddButton';
 import Counter from '../../ui/Counter/Counter';
+import default_img from '../../public/default_img.png';
 
 import style from './ProductItem.module.scss';
 
@@ -16,7 +17,7 @@ const ProductItem = ({ prod }: any) => {
 
   return (
     <div className={style.product}>
-      <img className={style.img} src={webp_image_url} />
+      <img className={style.img} src={!webp_image_url ? default_img : webp_image_url} />
       <div className={style.titleDesc}>
         <div className={style.title}>{textCut(name, 30)}</div>
         <Link to={`/products/${id}`} className={style.description}>

@@ -7,9 +7,9 @@ const ProductList = () => {
   const categories = useAppSelector((state) => state.categories.categories);
 
   return (
-    <div className={style.productList}>
+    <div className={style.list}>
       {categories === undefined || categories.length === 0 ? (
-        <p className={style.message}>Нет добавленых элементов</p>
+        <p className={style.message}>Нет в наличии</p>
       ) : (
         categories.map((category) => (
           <ProductListElement key={category.id} name={category.name} id={category.id} />
