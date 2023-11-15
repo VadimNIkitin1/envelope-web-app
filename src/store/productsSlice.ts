@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { IProducts, IProduct } from './types';
-import axios from 'axios';
 
 axios.defaults.baseURL = 'https://swarovskidmitrii.ru/api/v1/';
 axios.defaults.withCredentials = true;

@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICategories, ICategory } from './types';
-import axios from 'axios';
 
 axios.defaults.baseURL = 'https://swarovskidmitrii.ru/api/v1/';
 axios.defaults.withCredentials = true;
@@ -16,7 +16,11 @@ export const getCategories = createAsyncThunk<ICategory[], undefined, { rejectVa
   'categories/getCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`categories/`);
+      const res = await axios.get(`categories/`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
