@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { IProducts, IProduct } from './types';
 
-axios.defaults.baseURL = 'https://swarovskidmitrii.ru/api/v1/';
+axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
 axios.defaults.headers['Content-Type'] = 'application/json';
 
@@ -26,7 +26,7 @@ export const getProducts = createAsyncThunk<IProduct[], undefined, { rejectValue
   'products/getProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`products/`);
+      const res = await axios.get(`product/`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -40,7 +40,7 @@ export const getProductById = createAsyncThunk<
   { rejectValue: string }
 >('products/getProductById', async (id, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`products/${id}`);
+    const res = await axios.get(`product/${id}`);
     return res.data;
   } catch (error: any) {
     return rejectWithValue(error.response.data);

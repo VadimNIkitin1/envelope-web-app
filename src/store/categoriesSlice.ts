@@ -2,9 +2,12 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICategories, ICategory } from './types';
 
-axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/';
+const url = window.location.href;
+const schema = url.replace('https://store.envelope-app.ru/', '').replace('/1/', '');
+const store_id = url.replace(`https://store.envelope-app.ru/${schema}/`, '').replace('/', '');
+
+axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
-axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: ICategories = {
   categories: [],
@@ -16,7 +19,7 @@ export const getCategories = createAsyncThunk<ICategory[], undefined, { rejectVa
   'categories/getCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`categories/`, {
+      const res = await axios.get(`category/?schema=${schema}&store_id=${store_id}`, {
         headers: {
           'Content-Type': 'application/json',
         },

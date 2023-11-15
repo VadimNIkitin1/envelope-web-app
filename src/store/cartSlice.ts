@@ -2,9 +2,10 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICart, IProduct } from './types';
 
-axios.defaults.baseURL = 'https://store.envelope-app.ru/10/1/';
+const url = window.location.href;
+console.log(url);
+axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
-axios.defaults.headers['Content-Type'] = 'application/json';
 
 const initialState: ICart = {
   cart: [],
@@ -26,7 +27,7 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`cart-items/`);
+      const res = await axios.get(`cart/`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
