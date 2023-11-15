@@ -15,9 +15,11 @@ const ProductListElement: FC<ICategory> = ({ name_rus, id }) => {
       <h3 id={`${name_rus}`} className={style.categoryName}>
         {name_rus}
       </h3>
-      {filterProd.map((prod) => (
-        <ProductItem prod={prod} key={prod.id} />
-      ))}
+      {filterProd === undefined || filterProd.length === 0 ? (
+        <p className={style.message}>Нет добавленых элементов</p>
+      ) : (
+        filterProd.map((prod) => <ProductItem prod={prod} key={prod.id} />)
+      )}
     </div>
   );
 };

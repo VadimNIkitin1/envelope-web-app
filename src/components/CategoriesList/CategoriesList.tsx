@@ -8,9 +8,13 @@ const CategoriesList = () => {
 
   return (
     <div className={style.list}>
-      {categories.map((category, index) => (
-        <CategoriesItem key={category.name_rus} category={category} index={index} />
-      ))}
+      {categories === undefined || categories.length === 0 ? (
+        <p className={style.message}>Нет добавленых элементов</p>
+      ) : (
+        categories.map((category, index) => (
+          <CategoriesItem key={category.name_rus} category={category} index={index} />
+        ))
+      )}
     </div>
   );
 };

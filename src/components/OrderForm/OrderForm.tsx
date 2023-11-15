@@ -36,7 +36,7 @@ const OrderForm = () => {
       reset();
       onClose();
     },
-    [cart]
+    [cart, dispatch, id, initDataHash, onClose, reset]
   );
 
   const mainButtonSubmitHandler = handleSubmit(onSubmit);
