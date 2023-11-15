@@ -10,18 +10,18 @@ export const useTelegram = () => {
   const initData = new URLSearchParams(tg?.initData);
   const initDataHash = initData.get('hash');
 
-  const onToggleBackButton = (cb: any) => {
-    useEffect(() => {
-      tg.BackButton.show().onClick(cb);
-      return () => {
-        tg.BackButton.offClick(cb);
-      };
-    }, []);
-  };
+  // const onToggleBackButton = (cb: any) => {
+  //   useEffect(() => {
+  //     tg.BackButton.show().onClick(cb);
+  //     return () => {
+  //       tg.BackButton.offClick(cb);
+  //     };
+  //   }, []);
+  // };
 
   return {
     onClose,
-    onToggleBackButton,
+    // onToggleBackButton,
     tg,
     initDataHash,
     id: tg.initDataUnsafe?.user?.id,
