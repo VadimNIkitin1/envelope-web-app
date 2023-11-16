@@ -1,9 +1,12 @@
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import CategoriesItem from '../CategoriesItem/CategoriesItem';
+import { toggleTabs } from '../../store/activeSlice';
 
 import style from './CategoriesList.module.scss';
 
 const CategoriesList = () => {
+  const dispatch = useAppDispatch();
+  const activeTab = useAppSelector((state) => state.activeTab.active);
   const categories = useAppSelector((state) => state.categories.categories);
 
   return (
@@ -12,7 +15,13 @@ const CategoriesList = () => {
         <p className={style.message}>Нет добавленых элементов</p>
       ) : (
         categories.map((category, index) => (
-          <CategoriesItem key={category.name} category={category} index={index} />
+          <a
+            className={activeTab === index ? style.categoryActive : style.category}
+            href={`#${category.name}`}
+            onClick={() => dispatch(toggleTabs(index))}
+          >
+            {category.name}
+          </a>
         ))
       )}
     </div>
