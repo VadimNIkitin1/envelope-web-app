@@ -4,13 +4,10 @@ import { ICart, IProduct } from './types';
 
 //@ts-ignore
 export const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
-
 const url = window.location.href;
 
-const schemaMatch = url.match(/schema=(\d+)/);
-const store_idMatch = url.match(/store_id=(\d+)/);
-const schema = schemaMatch && schemaMatch[1];
-export const store_id = store_idMatch && store_idMatch[1];
+const schema = url.match(/schema=(\d+)/)?.[1];
+const store_id = url.match(/store_id=(\d+)/)?.[1];
 const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
   !tg_user_id ? 1132630506 : tg_user_id
 }`;
