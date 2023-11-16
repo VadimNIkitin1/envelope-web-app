@@ -19,6 +19,7 @@ const ProductPage = () => {
   const dispatch = useAppDispatch();
   const render = useAppSelector((state) => state.cart.render);
   const product = useAppSelector((state) => state.products.product);
+
   const { id } = useParams();
 
   const { targetProd } = useCart(id);
@@ -62,7 +63,7 @@ const ProductPage = () => {
       >
         <h2>{price} руб.</h2>
 
-        {targetProd ? (
+        {targetProd.quantity !== 0 && targetProd !== undefined ? (
           <div className={style.counterContainer}>
             <Counter id={id}>{targetProd.quantity}</Counter>
           </div>

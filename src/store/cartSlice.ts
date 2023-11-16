@@ -31,7 +31,7 @@ export interface ISubmitForm {
   initDataHash: string | null;
 }
 
-export const getCart = createAsyncThunk<ICartItems[], undefined, { rejectValue: string }>(
+export const getCart = createAsyncThunk<ICart, undefined, { rejectValue: string }>(
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
@@ -76,9 +76,15 @@ export const decreaseProduct = createAsyncThunk<
   IProduct,
   string | undefined,
   { rejectValue: string }
->('cart/deleteProduct', async (_, { rejectWithValue, dispatch }) => {
+>('cart/deleteProduct', async (id, { rejectWithValue, dispatch }) => {
   try {
-    const res = await axios.delete(`cart/decrease/${QUERY}`, {});
+    const res = await axios.delete(`cart/decrease/?schema=${!schema ? 10 : schema}`, {
+      data: {
+        product_id: Number(id),
+        tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
+        store_id: !store_id ? 1 : store_id,
+      },
+    });
     dispatch(trigerRender());
     return res.data;
   } catch (error: any) {
@@ -137,7 +143,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(getCart.fulfilled, (state, action) => {
-        state.cart_items = action.payload;
+        state.cart_items = action.payload.cart_items;
         state.loading = false;
         state.error = null;
       })

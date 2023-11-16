@@ -14,6 +14,7 @@ import { schema, store_id } from '../../store/productsSlice';
 const ProductItem = ({ prod }: any) => {
   const dispatch = useAppDispatch();
   const { cartArr, cartQuantity } = useCart();
+
   const { name, price, id, image } = prod;
 
   return (
@@ -30,7 +31,7 @@ const ProductItem = ({ prod }: any) => {
       </div>
       <div className={style.purchase}>
         <span className={style.price}>{price} руб</span>
-        {contains(cartArr, id) ? (
+        {contains(cartArr, id) && cartQuantity[cartArr.indexOf(id)] !== 0 ? (
           <div className={style.counterContainer}>
             <Counter id={id}>{cartQuantity[cartArr.indexOf(id)]}</Counter>
           </div>
