@@ -13,11 +13,11 @@ import style from './ProductItem.module.scss';
 const ProductItem = ({ prod }: any) => {
   const dispatch = useAppDispatch();
   const { cartArr, cartQuantity } = useCart();
-  const { name, price, id, webp_image_url } = prod;
+  const { name, price, id, image } = prod;
 
   return (
     <div className={style.product}>
-      <img className={style.img} src={!webp_image_url ? default_img : webp_image_url} />
+      <img className={style.img} src={!image ? default_img : image} />
       <div className={style.titleDesc}>
         <div className={style.title}>{textCut(name, 30)}</div>
         <Link to={`/products/${id}`} className={style.description}>
