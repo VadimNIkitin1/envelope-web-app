@@ -16,7 +16,7 @@ import style from './ProductPage.module.scss';
 
 const ProductPage = () => {
   const dispatch = useAppDispatch();
-  const quantity = useAppSelector((state) => state.cart.quantity);
+  const render = useAppSelector((state) => state.cart.render);
   const product = useAppSelector((state) => state.products.product);
   const { id } = useParams();
 
@@ -26,11 +26,11 @@ const ProductPage = () => {
 
   useEffect(() => {
     dispatch(getProductById(id));
-  }, [dispatch, id]);
+  }, [id]);
 
   useEffect(() => {
     dispatch(getCart());
-  }, [dispatch, quantity]);
+  }, [render]);
 
   return (
     <div className={style.productPage}>

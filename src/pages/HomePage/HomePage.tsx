@@ -15,7 +15,7 @@ import { getCategories } from '../../store/categoriesSlice';
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.cart);
-  const quantity = useAppSelector((state) => state.cart.quantity);
+  const render = useAppSelector((state) => state.cart.render);
   const { goToForm } = useAppNavigate();
   const { tg } = useTelegram();
 
@@ -26,7 +26,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getCart());
-  }, [quantity]);
+  }, [render]);
 
   useEffect(() => {
     tg.BackButton.hide();

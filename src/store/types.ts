@@ -35,7 +35,7 @@ export interface IProducts {
 export interface ICart {
   cart: IProduct[];
   total_price: number;
-  quantity: number;
+  render: boolean;
   loading: boolean;
   error: string | null;
 }

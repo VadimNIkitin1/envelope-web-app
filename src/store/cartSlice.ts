@@ -21,7 +21,7 @@ axios.defaults.withCredentials = true;
 const initialState: ICart = {
   cart: [],
   total_price: 0,
-  quantity: 0,
+  render: false,
   loading: false,
   error: null,
 };
@@ -55,7 +55,7 @@ export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejec
           'Content-Type': 'application/json',
         },
       });
-      dispatch(incrementQuantity());
+      dispatch(trigerRender());
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -70,7 +70,7 @@ export const decreaseProduct = createAsyncThunk<
 >('cart/deleteProduct', async (_, { rejectWithValue, dispatch }) => {
   try {
     const res = await axios.delete(`cart/decrease/${QUERY}`, {});
-    dispatch(decrementQuantity());
+    dispatch(trigerRender());
     return res.data;
   } catch (error: any) {
     return rejectWithValue(error.response.data);
@@ -117,11 +117,8 @@ const slice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    incrementQuantity(state) {
-      state.quantity = state.quantity + 1;
-    },
-    decrementQuantity(state) {
-      state.quantity = state.quantity - 1;
+    trigerRender(state) {
+      state.render = !state.render;
     },
   },
   extraReducers: (builder) => {
@@ -186,6 +183,6 @@ const isError = (action: AnyAction) => {
   return action.type.endsWith('rejected');
 };
 
-export const { incrementQuantity, decrementQuantity } = slice.actions;
+export const { trigerRender } = slice.actions;
 
 export default slice.reducer;

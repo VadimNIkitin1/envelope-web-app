@@ -14,14 +14,14 @@ import OrderForm from '../../components/OrderForm/OrderForm';
 const FormPage = () => {
   const dispatch = useAppDispatch();
   const totalPrice = useAppSelector((state) => state.cart.total_price);
-  const quantity = useAppSelector((state) => state.cart.quantity);
+  const render = useAppSelector((state) => state.cart.render);
   const cart = useAppSelector((state) => state.cart.cart);
   const { onClear } = useCart();
 
   useEffect(() => {
     dispatch(getCart());
     dispatch(getCartTotalPrice());
-  }, [quantity]);
+  }, [render]);
 
   return (
     <div className={style.container}>

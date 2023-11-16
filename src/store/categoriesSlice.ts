@@ -23,11 +23,7 @@ export const getCategories = createAsyncThunk<ICategory[], undefined, { rejectVa
   'categories/getCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`category/${QUERY}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const res = await axios.get(`category/${QUERY}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
