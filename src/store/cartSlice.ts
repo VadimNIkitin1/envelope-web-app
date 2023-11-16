@@ -35,7 +35,11 @@ export const getCart = createAsyncThunk<ICartItems[], undefined, { rejectValue: 
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`cart/${QUERY}`);
+      const res = await axios.get(`cart/${QUERY}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
