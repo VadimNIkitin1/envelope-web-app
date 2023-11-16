@@ -21,7 +21,7 @@ const initialState: IProducts = {
     category_name: '',
     name: '',
     description: '',
-    webp_image_url: '',
+    image: '',
     price: 0,
     quantity: 0,
   },

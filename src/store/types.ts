@@ -15,7 +15,7 @@ export interface IProduct {
   category_name: string;
   name: string;
   description: string;
-  webp_image_url: string;
+  image: string;
   price: number;
   quantity: number;
 }

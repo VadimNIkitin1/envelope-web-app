@@ -22,7 +22,7 @@ const ProductPage = () => {
 
   const { targetProd } = useCart(id);
 
-  const { description, name, webp_image_url } = product;
+  const { description, name, image } = product;
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -34,7 +34,7 @@ const ProductPage = () => {
 
   return (
     <div className={style.productPage}>
-      <img className={style.img} src={webp_image_url} />
+      <img className={style.img} src={image} />
       <h1 className={style.name}>{name}</h1>
       <i className={style.description}>{description}</i>
       <div>
