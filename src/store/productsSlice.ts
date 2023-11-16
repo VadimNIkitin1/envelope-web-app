@@ -4,10 +4,11 @@ import { IProducts, IProduct } from './types';
 
 const url = window.location.href;
 
-// const schemaMatch = url.match(/schema=(\d+)/);
-// const store_idMatch = url.match(/store_id=(\d+)/);
+const schemaMatch = url.match(/schema=(\d+)/);
+const store_idMatch = url.match(/store_id=(\d+)/);
 const schema = url.match(/schema=(\d+)/);
 const store_id = url.match(/store_id=(\d+)/);
+console.log(schema, store_id);
 const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}`;
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
