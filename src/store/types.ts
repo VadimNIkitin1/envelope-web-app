@@ -11,18 +11,20 @@ export interface ICategories {
 
 export interface IProduct {
   id: number;
-  category_id: number;
-  category_name: string;
   name: string;
+  category_id: number;
   description: string;
-  image: string;
   price: number;
-  quantity: number;
-}
-export interface ICartItem {
-  product: IProduct;
-  quantity: number;
-  total_price: number;
+  image: string;
+  wt: number;
+  unit: {
+    id: number;
+    name: string;
+  };
+  kilocalories: number;
+  proteins: number;
+  fats: number;
+  carbohydrates: number;
 }
 
 export interface IProducts {
@@ -32,8 +34,16 @@ export interface IProducts {
   error: string | null;
 }
 
+export interface ICartItems {
+  id: number;
+  name: string;
+  image: string;
+  quantity: number;
+  unit_price: number;
+}
+
 export interface ICart {
-  cart: IProduct[];
+  cart_items: ICartItems[];
   total_price: number;
   render: boolean;
   loading: boolean;

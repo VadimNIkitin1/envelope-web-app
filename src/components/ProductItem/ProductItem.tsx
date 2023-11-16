@@ -9,6 +9,7 @@ import Counter from '../../ui/Counter/Counter';
 import default_img from '../../public/default_img.png';
 
 import style from './ProductItem.module.scss';
+import { schema, store_id } from '../../store/productsSlice';
 
 const ProductItem = ({ prod }: any) => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,10 @@ const ProductItem = ({ prod }: any) => {
       <img className={style.img} src={!image ? default_img : image} />
       <div className={style.titleDesc}>
         <div className={style.title}>{textCut(name, 30)}</div>
-        <Link to={`/products/${id}`} className={style.description}>
+        <Link
+          to={`/${!schema ? 10 : schema}/${!store_id ? 1 : store_id}/products/${id}`}
+          className={style.description}
+        >
           Подробнее...
         </Link>
       </div>

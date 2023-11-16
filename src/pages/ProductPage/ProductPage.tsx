@@ -13,6 +13,7 @@ import AddButton from '../../ui/AddButton/AddButton';
 import Counter from '../../ui/Counter/Counter';
 
 import style from './ProductPage.module.scss';
+import default_image from '../../public/default_img.png';
 
 const ProductPage = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,8 @@ const ProductPage = () => {
 
   const { targetProd } = useCart(id);
 
-  const { description, name, image } = product;
+  const { name, description, price, image, wt, unit, kilocalories, proteins, fats, carbohydrates } =
+    product;
 
   useEffect(() => {
     dispatch(getProductById(id));
@@ -34,19 +36,42 @@ const ProductPage = () => {
 
   return (
     <div className={style.productPage}>
-      <img className={style.img} src={image} />
+      <img className={style.img} src={!image ? default_image : image} />
       <h1 className={style.name}>{name}</h1>
       <i className={style.description}>{description}</i>
-      <div>
-        {targetProd.length > 0 ? (
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          columnGap: '10px',
+          marginBottom: '20px',
+        }}
+      >
+        <p>Ккал: {kilocalories}</p>
+        <p>Белки: {proteins}</p>
+        <p>Жиры: {fats}</p>
+        <p>Углеводы: {carbohydrates}</p>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          columnGap: '20px',
+        }}
+      >
+        <h2>{price} руб.</h2>
+
+        {targetProd ? (
           <div className={style.counterContainer}>
-            <Counter id={id}>{targetProd[0].quantity}</Counter>
+            <Counter id={id}>{targetProd.quantity}</Counter>
           </div>
         ) : (
           <div className={style.addButtonContainer}>
             <AddButton onClick={() => dispatch(addProduct(id))} text={'Добавить'} />
           </div>
         )}
+        <p>{wt + unit.name}</p>
       </div>
     </div>
   );

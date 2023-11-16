@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
-import { ICart, IProduct } from './types';
+import { ICart, ICartItems, IProduct } from './types';
 
 //@ts-ignore
 export const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
@@ -16,7 +16,7 @@ axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
 
 const initialState: ICart = {
-  cart: [],
+  cart_items: [],
   total_price: 0,
   render: false,
   loading: false,
@@ -24,14 +24,14 @@ const initialState: ICart = {
 };
 
 export interface ISubmitForm {
-  items: IProduct[];
+  cart: ICartItems[];
   name: string;
   phone: number;
   user_id: number;
   initDataHash: string | null;
 }
 
-export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: string }>(
+export const getCart = createAsyncThunk<ICartItems[], undefined, { rejectValue: string }>(
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
@@ -45,13 +45,21 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
 
 export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejectValue: string }>(
   'cart/addProduct',
-  async (data, { rejectWithValue, dispatch }) => {
+  async (id, { rejectWithValue, dispatch }) => {
     try {
-      const res = await axios.post(`cart/add/${QUERY}`, data, {
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await axios.post(
+        `cart/add/?schema=${!schema ? 10 : schema}`,
+        {
+          product_id: Number(id),
+          tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
+          store_id: !store_id ? 1 : store_id,
         },
-      });
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       dispatch(trigerRender());
       return res.data;
     } catch (error: any) {
@@ -125,7 +133,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(getCart.fulfilled, (state, action) => {
-        state.cart = action.payload;
+        state.cart_items = action.payload;
         state.loading = false;
         state.error = null;
       })

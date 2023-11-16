@@ -11,7 +11,7 @@ import style from './OrderForm.module.scss';
 
 const OrderForm = () => {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart.cart);
+  const cart = useAppSelector((state) => state.cart.cart_items);
   const { tg, id, onClose, initDataHash } = useTelegram();
 
   const {
@@ -24,7 +24,7 @@ const OrderForm = () => {
   const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
     (data: ISubmitForm) => {
       const requestData = {
-        items: cart,
+        cart: cart,
         name: data.name,
         phone: data.phone,
         user_id: id,

@@ -1,13 +1,11 @@
-import { FC } from 'react';
-import { ICartItem } from '../../store/types';
 import Counter from '../../ui/Counter/Counter';
 
 import { textCut } from '../../utils/textCut';
 
 import style from './CartItem.module.scss';
 
-const CartItem: FC<ICartItem> = ({ product, quantity, total_price }) => {
-  const { name, price, id } = product;
+const CartItem = ({ cart_items, total_price }) => {
+  const { name, price, id, quantity } = cart_items;
 
   return (
     <div className={style.item}>

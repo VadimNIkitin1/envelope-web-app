@@ -14,7 +14,7 @@ import { getCategories } from '../../store/categoriesSlice';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart.cart);
+  const cart = useAppSelector((state) => state.cart.cart_items);
   const render = useAppSelector((state) => state.cart.render);
   const { goToForm } = useAppNavigate();
   const { tg } = useTelegram();

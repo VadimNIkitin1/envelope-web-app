@@ -13,7 +13,7 @@ const ProductList = () => {
         <p className={style.message}>Нет в наличии</p>
       ) : (
         categories.map((category) => (
-          <div className={style.listElement}>
+          <div className={style.listElement} key={category.id}>
             <h3 id={`${category.name}`} className={style.categoryName}>
               {category.name}
             </h3>

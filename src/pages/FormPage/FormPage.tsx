@@ -15,7 +15,7 @@ const FormPage = () => {
   const dispatch = useAppDispatch();
   const totalPrice = useAppSelector((state) => state.cart.total_price);
   const render = useAppSelector((state) => state.cart.render);
-  const cart = useAppSelector((state) => state.cart.cart);
+  const cart = useAppSelector((state) => state.cart.cart_items);
   const { onClear } = useCart();
 
   useEffect(() => {
@@ -33,14 +33,7 @@ const FormPage = () => {
         {!cart.length ? (
           <h2>Список пуст...</h2>
         ) : (
-          cart.map((prod) => (
-            <CartItem
-              product={prod}
-              key={prod.id}
-              quantity={prod.quantity}
-              total_price={totalPrice}
-            />
-          ))
+          cart.map((prod) => <CartItem cart_items={prod} key={prod.id} total_price={totalPrice} />)
         )}
       </div>
       <h3>Заказ на сумму {totalPrice} руб</h3>

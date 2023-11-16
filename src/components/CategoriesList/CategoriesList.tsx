@@ -16,6 +16,7 @@ const CategoriesList = () => {
       ) : (
         categories.map((category, index) => (
           <a
+            key={category.id}
             className={activeTab === index ? style.categoryActive : style.category}
             href={`#${category.name}`}
             onClick={() => dispatch(toggleTabs(index))}

@@ -4,8 +4,8 @@ import { IProducts, IProduct } from './types';
 
 const url = window.location.href;
 
-const schema = url.match(/schema=(\d+)/)?.[1];
-const store_id = url.match(/store_id=(\d+)/)?.[1];
+export const schema = url.match(/schema=(\d+)/)?.[1];
+export const store_id = url.match(/store_id=(\d+)/)?.[1];
 
 const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}`;
 
@@ -17,12 +17,19 @@ const initialState: IProducts = {
   product: {
     id: 0,
     category_id: 0,
-    category_name: '',
     name: '',
     description: '',
     image: '',
     price: 0,
-    quantity: 0,
+    wt: 0,
+    unit: {
+      id: 0,
+      name: '',
+    },
+    kilocalories: 0,
+    proteins: 0,
+    fats: 0,
+    carbohydrates: 0,
   },
   loading: false,
   error: null,
@@ -46,7 +53,7 @@ export const getProductById = createAsyncThunk<
   { rejectValue: string }
 >('products/getProductById', async (id, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`product/${QUERY}/${id}`);
+    const res = await axios.get(`product/${id}/${QUERY}`);
     return res.data;
   } catch (error: any) {
     return rejectWithValue(error.response.data);

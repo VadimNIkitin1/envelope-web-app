@@ -5,7 +5,7 @@ import { clearCart } from '../store/cartSlice';
 
 export const useCart = (id?: string) => {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart.cart);
+  const cart = useAppSelector((state) => state.cart.cart_items);
   const { goBack } = useAppNavigate();
 
   const cartArr: number[] = [];
@@ -13,7 +13,7 @@ export const useCart = (id?: string) => {
 
   cart.map((el: any) => cartArr.push(el.product.id) && cartQuantity.push(el.quantity));
 
-  const targetProd = cart.filter((prod: any) => prod.product.id === Number(id));
+  const targetProd = cart.filter((prod: any) => prod.product.id === Number(id))?.[0];
 
   const onClear = async () => {
     await dispatch(clearCart());
