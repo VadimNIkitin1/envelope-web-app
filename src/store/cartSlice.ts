@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
 import { ICart, IProduct } from './types';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 export const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 
@@ -12,7 +11,9 @@ const schemaMatch = url.match(/schema=(\d+)/);
 const store_idMatch = url.match(/store_id=(\d+)/);
 const schema = schemaMatch && schemaMatch[1];
 export const store_id = store_idMatch && store_idMatch[1];
-const QUERY = `?schema=${schema}&store_id=${store_id}&tg_user_id=${tg_user_id}`;
+const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
+  !tg_user_id ? 1132630506 : tg_user_id
+}`;
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
@@ -37,7 +38,7 @@ export const getCart = createAsyncThunk<IProduct[], undefined, { rejectValue: st
   'cart/getCart',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`cart_items/${QUERY}`);
+      const res = await axios.get(`cart/${QUERY}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -49,7 +50,7 @@ export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejec
   'cart/addProduct',
   async (data, { rejectWithValue, dispatch }) => {
     try {
-      const res = await axios.post(`cart/add/?schema=${schema}`, data, {
+      const res = await axios.post(`cart/add/${QUERY}`, data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -68,7 +69,7 @@ export const decreaseProduct = createAsyncThunk<
   { rejectValue: string }
 >('cart/deleteProduct', async (_, { rejectWithValue, dispatch }) => {
   try {
-    const res = await axios.delete(`cart/decrease/?schema=${schema}`, {});
+    const res = await axios.delete(`cart/decrease/${QUERY}`, {});
     dispatch(decrementQuantity());
     return res.data;
   } catch (error: any) {

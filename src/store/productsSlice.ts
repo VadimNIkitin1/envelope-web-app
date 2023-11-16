@@ -8,6 +8,7 @@ const schemaMatch = url.match(/schema=(\d+)/);
 const store_idMatch = url.match(/store_id=(\d+)/);
 const schema = schemaMatch && schemaMatch[1];
 const store_id = store_idMatch && store_idMatch[1];
+const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}`;
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
@@ -32,7 +33,7 @@ export const getProducts = createAsyncThunk<IProduct[], undefined, { rejectValue
   'products/getProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`product/?schema=${schema}&store_id=${store_id}`);
+      const res = await axios.get(`product/${QUERY}`);
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -46,7 +47,7 @@ export const getProductById = createAsyncThunk<
   { rejectValue: string }
 >('products/getProductById', async (id, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`product/${id}`);
+    const res = await axios.get(`product/${QUERY}/${id}`);
     return res.data;
   } catch (error: any) {
     return rejectWithValue(error.response.data);

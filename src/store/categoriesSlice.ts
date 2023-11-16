@@ -8,6 +8,7 @@ const schemaMatch = url.match(/schema=(\d+)/);
 const store_idMatch = url.match(/store_id=(\d+)/);
 const schema = schemaMatch && schemaMatch[1];
 const store_id = store_idMatch && store_idMatch[1];
+const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}`;
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;
@@ -22,7 +23,7 @@ export const getCategories = createAsyncThunk<ICategory[], undefined, { rejectVa
   'categories/getCategories',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`category/?schema=${schema}&store_id=${store_id}`, {
+      const res = await axios.get(`category/${QUERY}`, {
         headers: {
           'Content-Type': 'application/json',
         },
