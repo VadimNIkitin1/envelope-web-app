@@ -4,8 +4,8 @@ import { IProducts, IProduct } from './types';
 
 const url = window.location.href;
 
-const schemaMatch = url.match(/schema=(\d+)/);
-const store_idMatch = url.match(/store_id=(\d+)/);
+// const schemaMatch = url.match(/schema=(\d+)/);
+// const store_idMatch = url.match(/store_id=(\d+)/);
 const schema = url.match(/schema=(\d+)/);
 const store_id = url.match(/store_id=(\d+)/);
 console.log(schema, store_id);
