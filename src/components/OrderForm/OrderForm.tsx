@@ -4,14 +4,12 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { ISubmitForm, clearCart, sendOrder } from '../../store/cartSlice';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { useTelegram } from '../../hooks/useTelegram';
 
 import style from './OrderForm.module.scss';
 
-const OrderForm = () => {
+const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart.cart_items);
   const { tg, id, onClose, initDataHash } = useTelegram();
 
   const {

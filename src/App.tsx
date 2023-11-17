@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { useTelegram } from './hooks/useTelegram';
 import router from './router';
-
-import './App.css';
+import style from './App.module.scss';
 
 function App() {
   const { tg } = useTelegram();
@@ -13,7 +12,7 @@ function App() {
   }, []);
 
   return (
-    <div className={'app'}>
+    <div className={style.app}>
       <RouterProvider router={router} />
     </div>
   );

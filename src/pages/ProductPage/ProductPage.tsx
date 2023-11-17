@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
-import { useCart } from '../../hooks/useCart';
-
 import { getProductById } from '../../store/productsSlice';
 import { addProduct, getCart } from '../../store/cartSlice';
 
@@ -14,15 +12,24 @@ import Counter from '../../ui/Counter/Counter';
 
 import style from './ProductPage.module.scss';
 import default_image from '../../public/default_img.png';
+import { useTelegram } from '../../hooks/useTelegram';
+import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 const ProductPage = () => {
   const dispatch = useAppDispatch();
   const render = useAppSelector((state) => state.cart.render);
   const product = useAppSelector((state) => state.products.product);
-
+  const cart = useAppSelector((state) => state.cart.cart_items);
+  const { tg } = useTelegram();
+  const { goBack } = useAppNavigate();
   const { id } = useParams();
 
-  const { targetProd } = useCart(id);
+  useEffect(() => {
+    dispatch(getCart());
+  }, [render]);
+
+  const ifCart = cart.filter((i) => i?.id === Number(id))[0];
+  console.log(ifCart);
 
   const { name, description, price, image, wt, unit, kilocalories, proteins, fats, carbohydrates } =
     product;
@@ -34,6 +41,13 @@ const ProductPage = () => {
   useEffect(() => {
     dispatch(getCart());
   }, [render]);
+
+  useEffect(() => {
+    tg.BackButton.show().onClick(goBack);
+    return () => {
+      tg.BackButton.offClick(goBack);
+    };
+  }, []);
 
   return (
     <div className={style.productPage}>
@@ -62,10 +76,9 @@ const ProductPage = () => {
         }}
       >
         <h2>{price} руб.</h2>
-
-        {targetProd.quantity !== 0 && targetProd !== undefined ? (
+        {ifCart && ifCart.quantity !== 0 ? (
           <div className={style.counterContainer}>
-            <Counter id={id}>{targetProd.quantity}</Counter>
+            <Counter id={id}>{ifCart.quantity}</Counter>
           </div>
         ) : (
           <div className={style.addButtonContainer}>

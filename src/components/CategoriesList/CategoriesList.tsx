@@ -1,13 +1,10 @@
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAppSelector } from '../../hooks/useAppSelector';
 import { toggleTabs } from '../../store/activeSlice';
 
 import style from './CategoriesList.module.scss';
 
-const CategoriesList = () => {
+const CategoriesList = ({ categories, activeTab }) => {
   const dispatch = useAppDispatch();
-  const activeTab = useAppSelector((state) => state.activeTab.active);
-  const categories = useAppSelector((state) => state.categories.categories);
 
   return (
     <div className={style.list}>

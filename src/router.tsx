@@ -11,7 +11,7 @@ const router = createBrowserRouter(
     <>
       <Route index path="/:schema/:store_id/" element={<HomePage />} errorElement={<ErrorPage />} />
       <Route path={'/:schema/:store_id/products/:id'} element={<ProductPage />} />
-      <Route path={'form'} element={<FormPage />} errorElement={<ErrorPage />} />
+      <Route path={'/:schema/:store_id/form'} element={<FormPage />} errorElement={<ErrorPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </>
   )
