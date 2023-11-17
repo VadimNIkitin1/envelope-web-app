@@ -9,11 +9,6 @@ export const useCart = (id?: string) => {
 
   const { goBack } = useAppNavigate();
 
-  const cartArr: number[] = [];
-  const cartQuantity: number[] = [];
-
-  cart.map((el: any) => cartArr.push(el.id) && cartQuantity.push(el.quantity));
-
   const targetProd = cart.filter((prod: any) => prod.id === Number(id))?.[0];
 
   const onClear = async () => {
@@ -22,8 +17,6 @@ export const useCart = (id?: string) => {
   };
 
   return {
-    cartArr,
-    cartQuantity,
     targetProd,
     onClear,
   };

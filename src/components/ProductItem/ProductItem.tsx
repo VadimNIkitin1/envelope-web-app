@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useCart } from '../../hooks/useCart';
-import { contains } from '../../utils/contains';
 import { textCut } from '../../utils/textCut';
 import { addProduct } from '../../store/cartSlice';
 import AddButton from '../../ui/AddButton/AddButton';
@@ -11,10 +9,8 @@ import default_img from '../../public/default_img.png';
 import style from './ProductItem.module.scss';
 import { schema, store_id } from '../../store/productsSlice';
 
-const ProductItem = ({ prod }: any) => {
+const ProductItem = ({ prod, ifCart }: any) => {
   const dispatch = useAppDispatch();
-  const { cartArr, cartQuantity } = useCart();
-
   const { name, price, id, image } = prod;
 
   return (
@@ -31,9 +27,9 @@ const ProductItem = ({ prod }: any) => {
       </div>
       <div className={style.purchase}>
         <span className={style.price}>{price} руб</span>
-        {contains(cartArr, id) && cartQuantity[cartArr.indexOf(id)] !== 0 ? (
+        {ifCart && ifCart.quantity !== 0 ? (
           <div className={style.counterContainer}>
-            <Counter id={id}>{cartQuantity[cartArr.indexOf(id)]}</Counter>
+            <Counter id={id}>{ifCart.quantity}</Counter>
           </div>
         ) : (
           <div className={style.addButtonContainer}>

@@ -1,12 +1,8 @@
-import { useAppSelector } from '../../hooks/useAppSelector';
 import ProductItem from '../ProductItem/ProductItem';
 
 import style from './ProductList.module.scss';
 
-const ProductList = () => {
-  const products = useAppSelector((state) => state.products.products);
-  const categories = useAppSelector((state) => state.categories.categories);
-
+const ProductList = ({ products, categories, cart }) => {
   return (
     <div className={style.list}>
       {categories === undefined || categories.length === 0 ? (
@@ -22,7 +18,13 @@ const ProductList = () => {
             ) : (
               products
                 .filter((prod) => prod.category_id === category.id)
-                .map((prod) => <ProductItem prod={prod} key={prod.id} />)
+                .map((prod) => (
+                  <ProductItem
+                    prod={prod}
+                    key={prod.id}
+                    ifCart={cart.filter((i) => i.id === prod.id)[0]}
+                  />
+                ))
             )}
           </div>
         ))
