@@ -104,17 +104,17 @@ export const clearCart = createAsyncThunk<string, undefined, { rejectValue: stri
   }
 );
 
-export const getCartTotalPrice = createAsyncThunk<string, undefined, { rejectValue: string }>(
-  'cart/getCartTotalPrice ',
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await axios.get('get-cart-total-price/');
-      return res.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
+// export const getCartTotalPrice = createAsyncThunk<string, undefined, { rejectValue: string }>(
+//   'cart/getCartTotalPrice ',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const res = await axios.get('get-cart-total-price/');
+//       return res.data;
+//     } catch (error: any) {
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
 
 export const sendOrder = createAsyncThunk<string, ISubmitForm, { rejectValue: string }>(
   'cart/sendOrder ',
@@ -155,14 +155,14 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(getCartTotalPrice.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(getCartTotalPrice.fulfilled, (state) => {
-        state.loading = false;
-        state.error = null;
-      })
+      // .addCase(getCartTotalPrice.pending, (state) => {
+      //   state.loading = true;
+      //   state.error = null;
+      // })
+      // .addCase(getCartTotalPrice.fulfilled, (state) => {
+      //   state.loading = false;
+      //   state.error = null;
+      // })
       .addCase(addProduct.pending, (state) => {
         state.loading = true;
         state.error = null;

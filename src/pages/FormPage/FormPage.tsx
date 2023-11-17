@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
-import { clearCart, getCart, getCartTotalPrice } from '../../store/cartSlice';
+import { clearCart, getCart } from '../../store/cartSlice';
 
 import style from './FormPage.module.scss';
 import TrashButton from '../../ui/TrashButton/TrashButton';
@@ -15,15 +15,15 @@ import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 const FormPage = () => {
   const dispatch = useAppDispatch();
-  const totalPrice = useAppSelector((state) => state.cart.total_price);
   const render = useAppSelector((state) => state.cart.render);
   const cart = useAppSelector((state) => state.cart.cart_items);
+  const total_price = useAppSelector((state) => state.cart.total_price);
   const { goBack } = useAppNavigate();
   const { tg } = useTelegram();
+  console.log(total_price);
 
   useEffect(() => {
     dispatch(getCart());
-    dispatch(getCartTotalPrice());
   }, [render]);
 
   const onClear = async () => {
@@ -48,12 +48,14 @@ const FormPage = () => {
         {!cart.length ? (
           <h2>Список пуст...</h2>
         ) : (
-          cart.map((prod) => <CartItem cart_items={prod} key={prod.id} total_price={totalPrice} />)
+          cart.map((prod) => (
+            <CartItem cart_items={prod} key={prod.id} total_price={prod.unit_price} />
+          ))
         )}
       </div>
-      <h3>Заказ на сумму {totalPrice} руб</h3>
+      <h3>Заказ на сумму {total_price} руб</h3>
       <h4 className={style.deliveryText}>
-        Доставка {totalPrice < 800 ? '249р 🚚' : 'бесплатно 😊'}
+        Доставка {total_price < 800 ? '249р 🚚' : 'бесплатно 😊'}
       </h4>
       <OrderForm cart={cart} />
     </div>
