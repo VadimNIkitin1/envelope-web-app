@@ -22,17 +22,44 @@ body {
   width: 0;
 }
 
+// .preloader {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   width: 100%;
+//   height: 100%;
+//   background: black;
+//   z-index: 2;
+//   transition: 1s all;
+//   opacity: 1;
+//   visibility: visible;
+// }
+
 .preloader {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
   z-index: 2;
-  transition: 1s all;
-  opacity: 1;
-  visibility: visible;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  top: 0;
+  left: 0;
+  animation: hidePreloader;
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes hidePreloader {
+  from {
+    opacity: 1;
+    visibility: visible;
+    // left: 0vw;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+    // left: -100vw;
+  }
 }
 
 .preloader_done {
