@@ -144,6 +144,7 @@ const slice = createSlice({
       })
       .addCase(getCart.fulfilled, (state, action) => {
         state.cart_items = action.payload.cart_items;
+        state.total_price = action.payload.total_price;
         state.loading = false;
         state.error = null;
       })
