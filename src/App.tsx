@@ -19,13 +19,16 @@ function App() {
   return (
     <div className={style.app}>
       {preloader ? (
-        <div className={preloader ? style.preloader : style.preloader_done}>
-          <div className={preloader ? style.loader : style.loader_done}>ENVELOPE</div>
-        </div>
+        <>
+          <div className={preloader ? style.preloader : style.preloader_done}>
+            <div className={preloader ? style.loader : style.loader_done}>ENVELOPE</div>
+          </div>
+          <RouterProvider router={router} />
+        </>
       ) : (
         <>
-          <div className={style.preloader}>
-            <div className={style.loader}>ENVELOPE</div>
+          <div className={style.preloader_done}>
+            <div className={style.loader_done}>ENVELOPE</div>
           </div>
 
           <RouterProvider router={router} />
