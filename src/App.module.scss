@@ -42,7 +42,7 @@ body {
   height: 100%;
   background: black;
   z-index: 2;
-  transition: 2s all;
+  transition: 3s all;
   opacity: 0;
   visibility: hidden;
 }
@@ -63,7 +63,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: 2s all;
+  transition: 3s all;
   opacity: 0;
   visibility: hidden;
 }
