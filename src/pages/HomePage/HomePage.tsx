@@ -14,14 +14,13 @@ import { getCategories } from '../../store/categoriesSlice';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart.cart_items);
+  const { goToForm } = useAppNavigate();
+  const { tg } = useTelegram();
+
+  const { cart_items, render } = useAppSelector((state) => state.cart);
   const products = useAppSelector((state) => state.products.products);
   const categories = useAppSelector((state) => state.categories.categories);
   const activeTab = useAppSelector((state) => state.activeTab.active);
-
-  const render = useAppSelector((state) => state.cart.render);
-  const { goToForm } = useAppNavigate();
-  const { tg } = useTelegram();
 
   useEffect(() => {
     dispatch(getCategories());
@@ -34,7 +33,7 @@ const HomePage = () => {
 
   useEffect(() => {
     tg.BackButton.hide();
-    if (cart.length !== 0) {
+    if (cart_items.length !== 0) {
       tg.MainButton.setParams({
         text: 'Перейти в корзину',
       })
@@ -46,12 +45,12 @@ const HomePage = () => {
     return () => {
       tg.MainButton.offClick(goToForm);
     };
-  }, [cart]);
+  }, [cart_items]);
 
   return (
     <div>
       <CategoriesList categories={categories} activeTab={activeTab} />
-      <ProductList cart={cart} products={products} categories={categories} />
+      <ProductList cart={cart_items} products={products} categories={categories} />
     </div>
   );
 };

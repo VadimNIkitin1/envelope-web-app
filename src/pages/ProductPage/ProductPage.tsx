@@ -17,9 +17,8 @@ import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 const ProductPage = () => {
   const dispatch = useAppDispatch();
-  const render = useAppSelector((state) => state.cart.render);
+  const { render, cart_items } = useAppSelector((state) => state.cart);
   const product = useAppSelector((state) => state.products.product);
-  const cart = useAppSelector((state) => state.cart.cart_items);
   const { tg } = useTelegram();
   const { goBack } = useAppNavigate();
   const { id } = useParams();
@@ -28,7 +27,7 @@ const ProductPage = () => {
     dispatch(getCart());
   }, [render]);
 
-  const ifCart = cart.filter((i) => i?.id === Number(id))[0];
+  const ifCart = cart_items.filter((i) => i?.id === Number(id))[0];
   const { name, description, price, image, wt, unit, kilocalories, proteins, fats, carbohydrates } =
     product;
 

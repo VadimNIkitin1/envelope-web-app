@@ -15,12 +15,9 @@ import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 const FormPage = () => {
   const dispatch = useAppDispatch();
-  const render = useAppSelector((state) => state.cart.render);
-  const cart = useAppSelector((state) => state.cart.cart_items);
-  const total_price = useAppSelector((state) => state.cart.total_price);
-  const { goBack } = useAppNavigate();
   const { tg } = useTelegram();
-  console.log(total_price);
+  const { goBack } = useAppNavigate();
+  const { render, cart_items, total_price } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getCart());
@@ -45,10 +42,10 @@ const FormPage = () => {
         <TrashButton onClick={() => onClear()} />
       </div>
       <div>
-        {!cart.length ? (
+        {!cart_items.length ? (
           <h2>Список пуст...</h2>
         ) : (
-          cart.map((prod) => (
+          cart_items.map((prod) => (
             <CartItem cart_items={prod} key={prod.id} total_price={prod.unit_price} />
           ))
         )}
@@ -57,7 +54,7 @@ const FormPage = () => {
       <h4 className={style.deliveryText}>
         Доставка {total_price < 800 ? '249р 🚚' : 'бесплатно 😊'}
       </h4>
-      <OrderForm cart={cart} />
+      <OrderForm cart={cart_items} />
     </div>
   );
 };
