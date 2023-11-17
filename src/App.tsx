@@ -14,7 +14,7 @@ function App() {
 
   setTimeout(() => {
     setPreloader(false);
-  }, 1000);
+  }, 1500);
 
   return (
     <div className={style.app}>
