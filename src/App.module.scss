@@ -56,3 +56,15 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+
+.loader_done {
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1.5s all;
+  opacity: 0;
+  visibility: hidden;
+}
