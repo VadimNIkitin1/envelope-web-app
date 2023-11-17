@@ -29,8 +29,6 @@ const ProductPage = () => {
   }, [render]);
 
   const ifCart = cart.filter((i) => i?.id === Number(id))[0];
-  console.log(ifCart);
-
   const { name, description, price, image, wt, unit, kilocalories, proteins, fats, carbohydrates } =
     product;
 
