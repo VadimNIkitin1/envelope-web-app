@@ -24,8 +24,8 @@ function App() {
         </div>
       ) : (
         <>
-          <div className={preloader ? style.preloader : style.preloader_done}>
-            <div className={preloader ? style.loader : style.loader_done}>ENVELOPE</div>
+          <div className={style.preloader}>
+            <div className={style.loader}>ENVELOPE</div>
           </div>
 
           <RouterProvider router={router} />
