@@ -23,8 +23,6 @@ const HomePage = () => {
   const { goToForm } = useAppNavigate();
   const { tg } = useTelegram();
 
-  tg.expand();
-
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
