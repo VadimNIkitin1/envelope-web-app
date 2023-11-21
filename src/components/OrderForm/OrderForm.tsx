@@ -32,10 +32,10 @@ const OrderForm = ({ cart }) => {
       };
 
       dispatch(sendOrder(requestData));
-      dispatch(clearCart());
       reset();
       goBack();
       dispatch(trigerRender());
+      dispatch(clearCart());
       onClose();
     },
     [cart]
