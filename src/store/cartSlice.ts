@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxjs/toolkit';
-import { ICart, ICartItems, IProduct } from './types';
+import { ICart, IProduct } from './types';
 
 //@ts-ignore
 export const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 const url = window.location.href;
 
 const schema = url.match(/schema=(\d+)/)?.[1];
-const store_id = url.match(/store_id=(\d+)/)?.[1];
+export const store_id = url.match(/store_id=(\d+)/)?.[1];
 const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
   !tg_user_id ? 1132630506 : tg_user_id
 }`;
@@ -24,11 +24,10 @@ const initialState: ICart = {
 };
 
 export interface ISubmitForm {
-  cart: ICartItems[];
-  name: string;
-  phone: number;
-  user_id: number;
-  initDataHash: string | null;
+  customer_name: string;
+  customer_phone: number | string;
+  tg_user_id?: number | string;
+  store_id?: number | string;
 }
 
 export const getCart = createAsyncThunk<ICart, undefined, { rejectValue: string }>(
@@ -104,23 +103,16 @@ export const clearCart = createAsyncThunk<string, undefined, { rejectValue: stri
   }
 );
 
-// export const getCartTotalPrice = createAsyncThunk<string, undefined, { rejectValue: string }>(
-//   'cart/getCartTotalPrice ',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const res = await axios.get('get-cart-total-price/');
-//       return res.data;
-//     } catch (error: any) {
-//       return rejectWithValue(error.response.data);
-//     }
-//   }
-// );
-
 export const sendOrder = createAsyncThunk<string, ISubmitForm, { rejectValue: string }>(
   'cart/sendOrder ',
   async (order, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`cart/order/${QUERY}`, order);
+      console.log(order);
+      const res = await axios.post(`/create_order/?schema=${!schema ? 10 : schema}`, order, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
@@ -156,14 +148,6 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      // .addCase(getCartTotalPrice.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(getCartTotalPrice.fulfilled, (state) => {
-      //   state.loading = false;
-      //   state.error = null;
-      // })
       .addCase(addProduct.pending, (state) => {
         state.loading = true;
         state.error = null;

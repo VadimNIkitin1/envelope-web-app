@@ -1,16 +1,20 @@
 import { useCallback, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { ISubmitForm, clearCart, sendOrder } from '../../store/cartSlice';
+import { ISubmitForm, clearCart, sendOrder, trigerRender } from '../../store/cartSlice';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useTelegram } from '../../hooks/useTelegram';
+import { tg_user_id, store_id } from '../../store/cartSlice';
 
 import style from './OrderForm.module.scss';
+import AddButton from '../../ui/AddButton/AddButton';
+import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
-  const { tg, id, onClose, initDataHash } = useTelegram();
+  const { tg, onClose } = useTelegram();
+  const { goBack } = useAppNavigate();
 
   const {
     register,
@@ -22,19 +26,19 @@ const OrderForm = ({ cart }) => {
   const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
     (data: ISubmitForm) => {
       const requestData = {
-        cart: cart,
-        name: data.name,
-        phone: data.phone,
-        user_id: id,
-        initDataHash,
+        tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
+        store_id: !store_id ? 1 : store_id,
+        ...data,
       };
 
       dispatch(sendOrder(requestData));
       dispatch(clearCart());
       reset();
+      goBack();
+      dispatch(trigerRender());
       onClose();
     },
-    [cart, dispatch, id, initDataHash, onClose, reset]
+    [cart]
   );
 
   const mainButtonSubmitHandler = handleSubmit(onSubmit);
@@ -59,20 +63,21 @@ const OrderForm = ({ cart }) => {
       <input
         className={style.input}
         placeholder="Имя"
-        {...register('name', {
+        {...register('customer_name', {
           required: 'Это поле обязательно для заполнения!',
         })}
       />
-      {errors?.name && <p className={style.errorMsg}>{errors.name.message}</p>}
+      {errors?.customer_name && <p className={style.errorMsg}>{errors.customer_name.message}</p>}
       <input
         className={style.input}
         type="number"
         placeholder="Телефон"
-        {...register('phone', {
+        {...register('customer_phone', {
           required: 'Это поле обязательно для заполнения!',
         })}
       />
-      {errors.phone && <p className={style.errorMsg}>{errors.phone.message}</p>}
+      {errors.customer_phone && <p className={style.errorMsg}>{errors.customer_phone.message}</p>}
+      <AddButton onClick={handleSubmit(onSubmit)} text="Заказать" />
     </form>
   );
 };
