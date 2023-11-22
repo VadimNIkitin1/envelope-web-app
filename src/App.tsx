@@ -5,32 +5,15 @@ import router from './router';
 import style from './App.module.scss';
 
 function App() {
-  const [preloader, setPreloader] = useState(true);
   const { tg } = useTelegram();
 
   useEffect(() => {
     tg.expand();
   }, []);
 
-  setTimeout(() => {
-    setPreloader(false);
-  }, 1500);
-
   return (
     <div className={style.app}>
-      {preloader ? (
-        <div className={style.preloader}>
-          <div className={style.loader}>ENVELOPE</div>
-        </div>
-      ) : (
-        <>
-          <div className={style.preloader_done}>
-            <div className={style.loader_done}>ENVELOPE</div>
-          </div>
-
-          <RouterProvider router={router} />
-        </>
-      )}
+      <RouterProvider router={router} />
     </div>
   );
 }
