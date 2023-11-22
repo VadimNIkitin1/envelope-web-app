@@ -3,22 +3,24 @@ import ProductItem from '../ProductItem/ProductItem';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { toggleTabs } from '../../store/activeSlice';
 import style from './ProductListItem.module.scss';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
-const ProductListItem = ({ category, products, index, cart }) => {
+const ProductListItem = ({ category, index }) => {
+  const products = useAppSelector((state) => state.products.products);
+  const cart = useAppSelector((state) => state.cart.cart_items);
   const dispatch = useAppDispatch();
 
   const [ref] = useInView({
     threshold: 0.5,
-    onChange(inView, entry) {
+    onChange(inView) {
       if (inView) {
-        //@ts-ignore
-        dispatch(toggleTabs(Number(entry?.target.tabIndex)));
+        dispatch(toggleTabs(index));
       }
     },
   });
 
   return (
-    <div className={style.listElement} key={category.id} ref={ref} tabIndex={index}>
+    <div className={style.listElement} key={category.id} ref={ref}>
       <h3 id={`${category.name}`} className={style.categoryName}>
         {category.name}
       </h3>

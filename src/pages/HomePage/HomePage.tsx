@@ -20,9 +20,6 @@ const HomePage = () => {
   const { tg } = useTelegram();
 
   const { cart_items, render } = useAppSelector((state) => state.cart);
-  const products = useAppSelector((state) => state.products.products);
-  const categories = useAppSelector((state) => state.categories.categories);
-  const activeTab = useAppSelector((state) => state.activeTab.active);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -64,8 +61,8 @@ const HomePage = () => {
           <div className={style.preloader_done}>
             <div className={style.loader_done}>ENVELOPE</div>
           </div>
-          <CategoriesList categories={categories} activeTab={activeTab} />
-          <ProductList cart={cart_items} products={products} categories={categories} />
+          <CategoriesList />
+          <ProductList />
         </>
       )}
     </div>
