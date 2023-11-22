@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { ISubmitForm, clearCart, sendOrder, trigerRender } from '../../store/cartSlice';
+import { ISubmitForm, sendOrder } from '../../store/cartSlice';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useTelegram } from '../../hooks/useTelegram';
@@ -15,13 +15,11 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
   const { tg, onClose } = useTelegram();
-  const { goBack } = useAppNavigate();
   const { error } = useAppSelector((state) => state.cart);
 
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors, isValid },
   } = useForm<ISubmitForm>();
 
