@@ -33,11 +33,7 @@ const OrderForm = ({ cart }) => {
 
       await dispatch(sendOrder(requestData));
 
-      if (!error) {
-        onClose();
-      } else {
-        return;
-      }
+      onClose();
     },
     [cart]
   );
