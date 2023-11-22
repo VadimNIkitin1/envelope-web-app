@@ -10,11 +10,13 @@ import { tg_user_id, store_id } from '../../store/cartSlice';
 import style from './OrderForm.module.scss';
 import AddButton from '../../ui/AddButton/AddButton';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
+import { useAppSelector } from '../../hooks/useAppSelector';
 
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
   const { tg, onClose } = useTelegram();
   const { goBack } = useAppNavigate();
+  const { error } = useAppSelector((state) => state.cart);
 
   const {
     register,
@@ -24,19 +26,20 @@ const OrderForm = ({ cart }) => {
   } = useForm<ISubmitForm>();
 
   const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
-    (data: ISubmitForm) => {
+    async (data: ISubmitForm) => {
       const requestData = {
         tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
         store_id: !store_id ? 1 : store_id,
         ...data,
       };
 
-      dispatch(sendOrder(requestData));
-      reset();
-      goBack();
-      dispatch(trigerRender());
-      dispatch(clearCart());
-      onClose();
+      await dispatch(sendOrder(requestData));
+
+      if (!error) {
+        onClose();
+      } else {
+        return;
+      }
     },
     [cart]
   );
@@ -78,6 +81,7 @@ const OrderForm = ({ cart }) => {
       />
       {errors.customer_phone && <p className={style.errorMsg}>{errors.customer_phone.message}</p>}
       <AddButton onClick={handleSubmit(onSubmit)} text="Заказать" />
+      {error && <p>Что то пошло не так! Попробуйте еще раз!</p>}
     </form>
   );
 };
