@@ -3,11 +3,11 @@ import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxj
 import { ICart, IProduct } from './types';
 
 //@ts-ignore
-export const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
+const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 const url = window.location.href;
 
 const schema = url.match(/schema=(\d+)/)?.[1];
-export const store_id = url.match(/store_id=(\d+)/)?.[1];
+const store_id = url.match(/store_id=(\d+)/)?.[1];
 const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
   !tg_user_id ? 1132630506 : tg_user_id
 }`;
@@ -107,12 +107,19 @@ export const sendOrder = createAsyncThunk<string, ISubmitForm, { rejectValue: st
   'cart/sendOrder ',
   async (order, { rejectWithValue }) => {
     try {
-      console.log(order);
-      const res = await axios.post(`/create_order/?schema=${!schema ? 10 : schema}`, order, {
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await axios.post(
+        `/create_order/?schema=${!schema ? 10 : schema}`,
+        {
+          ...order,
+          tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
+          store_id: !store_id ? 1 : store_id,
         },
-      });
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);

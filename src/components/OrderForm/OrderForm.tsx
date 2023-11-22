@@ -5,17 +5,13 @@ import { ISubmitForm, sendOrder } from '../../store/cartSlice';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useTelegram } from '../../hooks/useTelegram';
-import { tg_user_id, store_id } from '../../store/cartSlice';
 
 import style from './OrderForm.module.scss';
 import AddButton from '../../ui/AddButton/AddButton';
 
-import { useAppSelector } from '../../hooks/useAppSelector';
-
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
   const { tg, onClose } = useTelegram();
-  const { error } = useAppSelector((state) => state.cart);
 
   const {
     register,
@@ -26,8 +22,6 @@ const OrderForm = ({ cart }) => {
   const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
     async (data: ISubmitForm) => {
       const requestData = {
-        tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
-        store_id: !store_id ? 1 : store_id,
         ...data,
       };
 
@@ -75,7 +69,6 @@ const OrderForm = ({ cart }) => {
       />
       {errors.customer_phone && <p className={style.errorMsg}>{errors.customer_phone.message}</p>}
       <AddButton onClick={handleSubmit(onSubmit)} text="Заказать" />
-      {error && <p>Что то пошло не так! Попробуйте еще раз!</p>}
     </form>
   );
 };
