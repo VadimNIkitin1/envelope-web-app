@@ -1,5 +1,7 @@
-//@ts-ignore
-const tg = window.Telegram.WebApp;
+interface IWindow extends Window {
+  Telegram?: any;
+}
+const tg = (window as IWindow).Telegram.WebApp;
 
 export const useTelegram = () => {
   const onClose = () => {

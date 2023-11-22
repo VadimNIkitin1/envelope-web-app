@@ -5,32 +5,26 @@ import style from './CategoriesList.module.scss';
 const CategoriesList = () => {
   const categories = useAppSelector((state) => state.categories.categories);
   const activeTab = useAppSelector((state) => state.activeTab.active);
-  const listRef = useRef(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (listRef.current && categories[activeTab]) {
-      //@ts-ignore
-      const activeTabElement = listRef.current.children[activeTab];
+      const activeTabElement = listRef.current.children[activeTab] as HTMLElement;
 
       const scrollDirection =
-        //@ts-ignore
         activeTabElement.offsetLeft > listRef.current.scrollLeft ? 'right' : 'left';
 
       if (
         (scrollDirection === 'right' &&
           activeTabElement.offsetLeft + activeTabElement.offsetWidth >
-            //@ts-ignore
             listRef.current.offsetWidth + listRef.current.scrollLeft) ||
-        //@ts-ignore
         (scrollDirection === 'left' && activeTabElement.offsetLeft < listRef.current.scrollLeft)
       ) {
-        //@ts-ignore
         listRef.current.scrollTo({
           left:
             scrollDirection === 'right'
               ? activeTabElement.offsetLeft
-              : //@ts-ignore
-                activeTabElement.offsetLeft - listRef.current.offsetWidth,
+              : activeTabElement.offsetLeft - listRef.current.offsetWidth,
           behavior: 'smooth',
         });
       }
