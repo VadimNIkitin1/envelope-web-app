@@ -9,7 +9,7 @@ import { tg_user_id, store_id } from '../../store/cartSlice';
 
 import style from './OrderForm.module.scss';
 import AddButton from '../../ui/AddButton/AddButton';
-import { useAppNavigate } from '../../hooks/useAppNavigate';
+
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 const OrderForm = ({ cart }) => {
