@@ -1,17 +1,15 @@
+@import '../../App.module.scss';
+
 .product {
   display: flex;
+  align-items: center;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
 }
 
 .img {
-  width: 85px;
-  height: 85px;
-  margin: 5px;
-  border-radius: 10px;
-  object-fit: cover;
+  @include image;
 }
 
 .titleDesc {

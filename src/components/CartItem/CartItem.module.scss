@@ -1,3 +1,5 @@
+@import '../../App.module.scss';
+
 .item {
   display: flex;
   padding: 5px 15px 5px 15px;
@@ -7,11 +9,7 @@
 }
 
 .image {
-  width: 85px;
-  height: 85px;
-  margin: 5px;
-  border-radius: 10px;
-  object-fit: cover;
+  @include image;
 }
 
 .name {

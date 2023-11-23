@@ -8,14 +8,25 @@ import default_img from '../../public/default_img.png';
 
 import style from './ProductItem.module.scss';
 import { schema, store_id } from '../../store/productsSlice';
+import { useInView } from 'react-intersection-observer';
 
 const ProductItem = ({ prod, ifCart }: any) => {
   const dispatch = useAppDispatch();
   const { name, price, id, image } = prod;
+  const [ref, inView] = useInView({
+    threshold: 0,
+    triggerOnce: true,
+  });
 
   return (
     <div className={style.product}>
-      <img className={style.img} src={!image ? default_img : image} />
+      <div ref={ref}>
+        {!inView ? (
+          <div className={style.img}></div>
+        ) : (
+          <img className={style.img} src={!image ? default_img : image} />
+        )}
+      </div>
       <div className={style.titleDesc}>
         <div className={style.title}>{textCut(name, 30)}</div>
         <Link

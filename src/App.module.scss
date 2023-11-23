@@ -21,3 +21,12 @@ body {
 ::-webkit-scrollbar {
   width: 0;
 }
+
+@mixin image {
+  width: 85px;
+  height: 85px;
+  margin: 5px;
+  border-radius: 10px;
+  object-fit: cover;
+  background-color: gray;
+}
