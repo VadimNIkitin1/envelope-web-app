@@ -48,7 +48,7 @@ const HomePage = () => {
 
   setTimeout(() => {
     setPreloader(false);
-  }, 1500);
+  }, 1000);
 
   return (
     <div>

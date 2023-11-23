@@ -139,45 +139,35 @@ const slice = createSlice({
     builder
       .addCase(getCart.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(getCart.fulfilled, (state, action) => {
         state.cart_items = action.payload.cart_items;
         state.total_price = action.payload.total_price;
         state.loading = false;
-        state.error = null;
       })
       .addCase(clearCart.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(clearCart.fulfilled, (state) => {
         state.loading = false;
-        state.error = null;
       })
       .addCase(addProduct.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(addProduct.fulfilled, (state) => {
         state.loading = false;
-        state.error = null;
       })
       .addCase(decreaseProduct.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(decreaseProduct.fulfilled, (state) => {
         state.loading = false;
-        state.error = null;
       })
       .addCase(sendOrder.pending, (state) => {
         state.loading = true;
-        state.error = null;
       })
       .addCase(sendOrder.fulfilled, (state) => {
         state.loading = false;
-        state.error = null;
       })
       .addMatcher(isError, (state, action: PayloadAction<string>) => {
         state.error = action.payload;
