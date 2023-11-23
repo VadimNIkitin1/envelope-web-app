@@ -21,17 +21,6 @@ body {
 ::-webkit-scrollbar {
   width: 0;
 }
-::-webkit-scrollbar-thumb {
-  width: 0;
-}
-
-::-webkit-scrollbar-track {
-  width: 0;
-}
-
-::-webkit-scrollbar-button {
-  width: 0;
-}
 
 @mixin image {
   width: 85px;
