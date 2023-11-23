@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 
 const CartItem = ({ cart_items, total_price }) => {
   const { name, price, id, quantity, image } = cart_items;
+
   const [ref, inView] = useInView({
     threshold: 0,
     triggerOnce: true,
