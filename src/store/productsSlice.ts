@@ -3,6 +3,8 @@ import { createSlice, createAsyncThunk, PayloadAction, AnyAction } from '@reduxj
 import { IProducts, IProduct } from './types';
 
 const url = window.location.href;
+//@ts-ignore
+const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 
 export const schema = url.match(/schema=(\d+)/)?.[1];
 export const store_id = url.match(/store_id=(\d+)/)?.[1];
@@ -39,7 +41,9 @@ export const getProducts = createAsyncThunk<IProduct[], undefined, { rejectValue
   'products/getProducts',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`product/${QUERY}`);
+      const res = await axios.get(
+        `product/${QUERY}&tg_user_id=${!tg_user_id ? 1132630506 : tg_user_id}`
+      );
       return res.data;
     } catch (error: any) {
       return rejectWithValue(error.response.data);
