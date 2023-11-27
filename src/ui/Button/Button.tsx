@@ -8,11 +8,13 @@ interface IButton {
   children?: ReactNode;
   onClick: () => void;
   view: string;
+  style?: any;
 }
 
-const Button: FC<IButton> = ({ children, view, onClick }) => {
+const Button: FC<IButton> = ({ children, view, onClick, ...props }) => {
   return (
     <button
+      {...props}
       onClick={onClick}
       className={clsx(
         style.add,

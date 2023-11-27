@@ -79,7 +79,12 @@ const ProductPage = () => {
           </div>
         ) : (
           <div className={style.addButtonContainer}>
-            <Button onClick={() => dispatch(addProduct(id))} children={'Добавить'} view="add" />
+            <Button
+              onClick={() => dispatch(addProduct(id))}
+              children={'Добавить'}
+              view="add"
+              style={{ fontSize: '22px' }}
+            />
           </div>
         )}
         <p>{wt + unit.name}</p>
