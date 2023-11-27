@@ -1,26 +1,11 @@
 .Counter {
   display: flex;
   align-items: center;
-  height: 100%;
+  justify-content: center;
+  column-gap: 5px;
 }
 
 .quantity {
-  font-size: 130%;
-  margin: 10%;
-}
-
-.minus {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background: red;
-  border-radius: 5px;
-}
-
-.plus {
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 5px;
-  background: #7669c8;
+  font-size: 18px;
+  margin: 5px;
 }
