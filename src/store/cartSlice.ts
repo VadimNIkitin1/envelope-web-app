@@ -8,7 +8,7 @@ const url = window.location.href;
 
 const schema = url.match(/schema=(\d+)/)?.[1];
 const store_id = url.match(/store_id=(\d+)/)?.[1];
-const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
+const QUERY = `?schema=${!schema ? 1 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
   !tg_user_id ? 1132630506 : tg_user_id
 }`;
 
@@ -51,7 +51,7 @@ export const addProduct = createAsyncThunk<IProduct, string | undefined, { rejec
   async (id, { rejectWithValue, dispatch }) => {
     try {
       const res = await axios.post(
-        `cart/add/?schema=${!schema ? 10 : schema}`,
+        `cart/add/?schema=${!schema ? 1 : schema}`,
         {
           product_id: Number(id),
           tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
@@ -77,7 +77,7 @@ export const decreaseProduct = createAsyncThunk<
   { rejectValue: string }
 >('cart/deleteProduct', async (id, { rejectWithValue, dispatch }) => {
   try {
-    const res = await axios.delete(`cart/decrease/?schema=${!schema ? 10 : schema}`, {
+    const res = await axios.delete(`cart/decrease/?schema=${!schema ? 1 : schema}`, {
       data: {
         product_id: Number(id),
         tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,
@@ -108,7 +108,7 @@ export const sendOrder = createAsyncThunk<string, ISubmitForm, { rejectValue: st
   async (order, { rejectWithValue }) => {
     try {
       const res = await axios.post(
-        `/create_order/?schema=${!schema ? 10 : schema}`,
+        `/create_order/?schema=${!schema ? 1 : schema}`,
         {
           ...order,
           tg_user_id: !tg_user_id ? 1132630506 : tg_user_id,

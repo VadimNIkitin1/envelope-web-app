@@ -6,12 +6,13 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { clearCart, getCart } from '../../store/cartSlice';
 
 import style from './FormPage.module.scss';
-import TrashButton from '../../ui/TrashButton/TrashButton';
+
 import CartItem from '../../components/CartItem/CartItem';
 import OrderForm from '../../components/OrderForm/OrderForm';
 import { useTelegram } from '../../hooks/useTelegram';
 
 import { useAppNavigate } from '../../hooks/useAppNavigate';
+import { Button } from '../../ui/Button/Button';
 
 const FormPage = () => {
   const dispatch = useAppDispatch();
@@ -39,7 +40,7 @@ const FormPage = () => {
     <div className={style.container}>
       <div className={style.orderTitle}>
         <h1>Ваш заказ</h1>
-        <TrashButton onClick={() => onClear()} />
+        <Button onClick={() => onClear()} view="trash" />
       </div>
       <div>
         {!cart_items.length ? (

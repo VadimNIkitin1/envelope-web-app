@@ -7,13 +7,13 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { getProductById } from '../../store/productsSlice';
 import { addProduct, getCart } from '../../store/cartSlice';
 
-import AddButton from '../../ui/AddButton/AddButton';
 import Counter from '../../ui/Counter/Counter';
 
 import style from './ProductPage.module.scss';
 import default_image from '../../public/default_img.png';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
+import { Button } from '../../ui/Button/Button';
 
 const ProductPage = () => {
   const dispatch = useAppDispatch();
@@ -79,7 +79,7 @@ const ProductPage = () => {
           </div>
         ) : (
           <div className={style.addButtonContainer}>
-            <AddButton onClick={() => dispatch(addProduct(id))} text={'Добавить'} />
+            <Button onClick={() => dispatch(addProduct(id))} children={'Добавить'} view="add" />
           </div>
         )}
         <p>{wt + unit.name}</p>

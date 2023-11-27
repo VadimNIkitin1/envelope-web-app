@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react';
 import { addProduct, decreaseProduct } from '../../store/cartSlice';
 
-import CounterButton from '../CounterButton/CounterButton';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import style from './Counter.module.scss';
+import { Button } from '../Button/Button';
 
 interface ICounter {
   children: ReactNode;
@@ -15,17 +15,9 @@ const Counter: FC<ICounter> = ({ children, id }) => {
   const dispatch = useAppDispatch();
   return (
     <div className={style.Counter}>
-      <CounterButton
-        children={'➖'}
-        className={style.minus}
-        onClick={() => dispatch(decreaseProduct(id))}
-      />
+      <Button children={'➖'} view="minus" onClick={() => dispatch(decreaseProduct(id))} />
       <p className={style.quantity}>{children}</p>
-      <CounterButton
-        children={'➕'}
-        className={style.plus}
-        onClick={() => dispatch(addProduct(id))}
-      />
+      <Button children={'➕'} view="plus" onClick={() => dispatch(addProduct(id))} />
     </div>
   );
 };

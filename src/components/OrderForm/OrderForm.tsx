@@ -7,11 +7,12 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useTelegram } from '../../hooks/useTelegram';
 
 import style from './OrderForm.module.scss';
-import AddButton from '../../ui/AddButton/AddButton';
+
+import { Button } from '../../ui/Button/Button';
 
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
-  const { tg, onClose } = useTelegram();
+  const { tg, onClose, id } = useTelegram();
 
   const {
     register,
@@ -68,7 +69,7 @@ const OrderForm = ({ cart }) => {
         })}
       />
       {errors.customer_phone && <p className={style.errorMsg}>{errors.customer_phone.message}</p>}
-      <AddButton onClick={handleSubmit(onSubmit)} text="Заказать" />
+      {!id && <Button onClick={handleSubmit(onSubmit)} children="Заказать" view="add" />}
     </form>
   );
 };

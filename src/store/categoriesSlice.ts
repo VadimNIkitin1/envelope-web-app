@@ -7,7 +7,7 @@ const url = window.location.href;
 const schema = url.match(/schema=(\d+)/)?.[1];
 const store_id = url.match(/store_id=(\d+)/)?.[1];
 
-const QUERY = `?schema=${!schema ? 10 : schema}&store_id=${!store_id ? 1 : store_id}`;
+const QUERY = `?schema=${!schema ? 1 : schema}&store_id=${!store_id ? 1 : store_id}`;
 
 axios.defaults.baseURL = 'https://envelope-app.ru/api/v1/store_bot/';
 axios.defaults.withCredentials = true;

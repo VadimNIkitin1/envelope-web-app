@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { textCut } from '../../utils/textCut';
 import { addProduct } from '../../store/cartSlice';
-import AddButton from '../../ui/AddButton/AddButton';
 import Counter from '../../ui/Counter/Counter';
 import default_img from '../../public/default_img.png';
 
 import style from './ProductItem.module.scss';
 import { schema, store_id } from '../../store/productsSlice';
 import { useInView } from 'react-intersection-observer';
+import { Button } from '../../ui/Button/Button';
 
 const ProductItem = ({ prod, ifCart }: any) => {
   const dispatch = useAppDispatch();
@@ -44,7 +44,7 @@ const ProductItem = ({ prod, ifCart }: any) => {
           </div>
         ) : (
           <div className={style.addButtonContainer}>
-            <AddButton onClick={() => dispatch(addProduct(id))} text={'Добавить'} />
+            <Button onClick={() => dispatch(addProduct(id))} view="add" children={'Добавить'} />
           </div>
         )}
       </div>
