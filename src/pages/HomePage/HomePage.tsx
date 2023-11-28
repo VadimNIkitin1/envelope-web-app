@@ -27,9 +27,9 @@ const HomePage = () => {
     dispatch(
       addTgUser({
         tg_user_id: !id ? 1132630506 : id,
-        first_name: !first_name ? 'Вадим' : first_name,
-        last_name: !last_name ? 'Никитин' : last_name,
-        username: !username ? 'vadimnikitin1' : username,
+        first_name: !first_name ? '-' : first_name,
+        last_name: !last_name ? '-' : last_name,
+        username: !username ? '-' : username,
         is_premium: !is_premium ? false : is_premium,
       })
     );
