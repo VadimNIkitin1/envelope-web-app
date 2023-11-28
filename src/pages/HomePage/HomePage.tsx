@@ -8,7 +8,7 @@ import ProductList from '../../components/ProductList/ProductList';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
 
-import { getCart } from '../../store/cartSlice';
+import { addTgUser, getCart } from '../../store/cartSlice';
 import { getProducts } from '../../store/productsSlice';
 import { getCategories } from '../../store/categoriesSlice';
 import style from './HomePage.module.scss';
@@ -17,13 +17,22 @@ const HomePage = () => {
   const [preloader, setPreloader] = useState(true);
   const dispatch = useAppDispatch();
   const { goToForm } = useAppNavigate();
-  const { tg } = useTelegram();
+  const { tg, id, first_name, last_name, username, is_premium } = useTelegram();
 
   const { cart_items, render } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getProducts());
+    dispatch(
+      addTgUser({
+        tg_user_id: !id ? 1132630506 : id,
+        first_name: !first_name ? 'Вадим' : first_name,
+        last_name: !last_name ? 'Никитин' : last_name,
+        username: !username ? 'vadimnikitin1' : username,
+        is_premium: !is_premium ? false : is_premium,
+      })
+    );
   }, []);
 
   useEffect(() => {

@@ -17,5 +17,9 @@ export const useTelegram = () => {
     initDataHash,
     id: tg.initDataUnsafe?.user?.id,
     queryId: tg.initDataUnsafe?.query_id,
+    username: tg.initDataUnsafe?.user?.username,
+    first_name: tg.initDataUnsafe?.user?.first_name,
+    last_name: tg.initDataUnsafe?.user?.last_name,
+    is_premium: tg.initDataUnsafe?.user?.is_premium,
   };
 };

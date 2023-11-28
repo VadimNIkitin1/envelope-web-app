@@ -30,6 +30,38 @@ export interface ISubmitForm {
   store_id?: number | string;
 }
 
+export interface IAddTgUser {
+  tg_user_id: number;
+  first_name: string;
+  last_name: string;
+  username: string;
+  is_premium: boolean;
+}
+
+export const addTgUser = createAsyncThunk<IAddTgUser, IAddTgUser, { rejectValue: string }>(
+  `cart/addTgUser`,
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await axios.post(
+        `add_tg_user/?schema=${!schema ? 1 : schema}`,
+        {
+          store_id: !store_id ? 1 : store_id,
+          ...data,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      return res.data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const getCart = createAsyncThunk<ICart, undefined, { rejectValue: string }>(
   'cart/getCart',
   async (_, { rejectWithValue }) => {
