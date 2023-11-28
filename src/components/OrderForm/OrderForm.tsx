@@ -21,12 +21,12 @@ const OrderForm = ({ cart }) => {
   } = useForm<ISubmitForm>();
 
   const onSubmit: SubmitHandler<ISubmitForm> = useCallback(
-    (data: ISubmitForm) => {
+    async (data: ISubmitForm) => {
       const requestData = {
         ...data,
       };
 
-      dispatch(sendOrder(requestData));
+      await dispatch(sendOrder(requestData));
 
       onClose();
     },
