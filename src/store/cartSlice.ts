@@ -6,8 +6,8 @@ import { ICart, IProduct } from './types';
 const tg_user_id = window.Telegram.WebApp.initDataUnsafe?.user?.id;
 const url = window.location.href;
 
-const schema = url.match(/schema=(\d+)/)?.[1];
-const store_id = url.match(/store_id=(\d+)/)?.[1];
+export const schema = url.match(/schema=(\d+)/)?.[1];
+export const store_id = url.match(/store_id=(\d+)/)?.[1];
 const QUERY = `?schema=${!schema ? 1 : schema}&store_id=${!store_id ? 1 : store_id}&tg_user_id=${
   !tg_user_id ? 1132630506 : tg_user_id
 }`;

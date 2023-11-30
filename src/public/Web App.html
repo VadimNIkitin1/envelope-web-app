@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:5173/1/1/products -->
+<html lang="en" style="--tg-viewport-height: 100vh; --tg-viewport-stable-height: 100vh;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="./Web App_files/client"></script>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Web App_files/css2" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./Web App_files/telegram-web-app.js"></script>
+    <title>Web App</title>
+  <style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/pages/FormPage/FormPage.module.scss">._container_w2q5b_1 {
+  padding: 10px 15px;
+}
+
+._orderTitle_w2q5b_5 {
+  display: flex;
+  justify-content: space-between;
+  color: #a6a6a6;
+}
+
+._deliveryText_w2q5b_11 {
+  color: white;
+  background-color: #5fa5f9;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px;
+  margin: 3px 0;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/ui/Counter/Counter.module.scss">._Counter_1hclq_1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+}
+
+._quantity_1hclq_8 {
+  font-size: 18px;
+  margin: 5px;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/ui/Button/Button.module.scss">._add_cw0o6_1 {
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 3px 5px;
+  font-weight: 700;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  border: none;
+  outline: none;
+}
+._add_cw0o6_1._trash_cw0o6_11 {
+  background: none;
+  font-size: 23px;
+  color: #a6a6a6;
+}
+._add_cw0o6_1._minus_cw0o6_16 {
+  background: red;
+  border-radius: 10px;
+}
+._add_cw0o6_1._plus_cw0o6_20 {
+  border-radius: 10px;
+  background: var(--tg-theme-button-color);
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/CartItem/CartItem.module.scss">* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+
+body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+  height: var(--tg-viewport-height);
+}
+
+._app_444i6_16 {
+  position: absolute;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+._item_444i6_25 {
+  display: flex;
+  padding: 5px 15px 5px 15px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._image_444i6_33 {
+  width: 85px;
+  height: 85px;
+  margin: 5px;
+  border-radius: 10px;
+  object-fit: cover;
+  background-color: gray;
+}
+
+._name_444i6_42 {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/OrderForm/OrderForm.module.scss">._form_h42gt_1 {
+  display: flex;
+  flex-direction: column;
+}
+
+._input_h42gt_6 {
+  border: none;
+  background-color: #a6a6a6;
+  border-radius: 5px;
+  padding: 10px 10px;
+  color: white;
+  margin: 1px 0;
+  font-size: 16px;
+}
+
+._errorMsg_h42gt_16 {
+  color: red;
+}
+
+input::-webkit-input-placeholder {
+  color: white;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/pages/ProductPage/ProductPage.module.scss">._productPage_11ydl_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 30px 0 30px;
+  width: 100%;
+  height: 100vh;
+}
+
+._img_11ydl_10 {
+  width: 100%;
+  height: 320px;
+  border-radius: 15px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+._name_11ydl_18 {
+  color: #a6a6a6;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+._price_11ydl_24 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+._description_11ydl_29 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+._addButtonContainer_11ydl_34 {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+._counterContainer_11ydl_42 {
+  width: 150px;
+  height: 50px;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/pages/ErrorPage/ErrorPage.module.scss">._page_zz0fi_1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  row-gap: 10px;
+}
+
+._container_zz0fi_10 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+._text_zz0fi_16 {
+  font-size: 40px;
+  font-weight: bold;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/CategoriesList/CategoriesList.module.scss">._list_12umu_1 {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: scroll;
+  background-color: var(--tg-theme-bg-color);
+  padding: 0 15px;
+}
+
+._category_12umu_11 {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 8px;
+  margin: 5px;
+  height: 40px;
+  color: #a6a6a6;
+  border-radius: 15px;
+  border: 2px solid #a6a6a6;
+  text-decoration: none;
+}
+
+._categoryActive_12umu_23 {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 10px;
+  margin: 5px;
+  height: 40px;
+  color: black;
+  border-radius: 15px;
+  background-color: #a6a6a6;
+  text-decoration: none;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/ProductItem/ProductItem.module.scss">* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+
+body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+  height: var(--tg-viewport-height);
+}
+
+._app_1caz0_16 {
+  position: absolute;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+._product_1caz0_25 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+._img_1caz0_33 {
+  width: 85px;
+  height: 85px;
+  margin: 5px;
+  border-radius: 10px;
+  object-fit: cover;
+  background-color: gray;
+}
+
+._titleDesc_1caz0_42 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: auto;
+  margin-left: 5px;
+  row-gap: 5px;
+}
+
+._title_1caz0_42 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+._description_1caz0_56 {
+  text-decoration: none;
+  color: #a6a6a6;
+  font-size: 18px;
+}
+
+._purchase_1caz0_62 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+  width: 100px;
+}
+
+._price_1caz0_70 {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+._addButtonContainer_1caz0_76 {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+._counterContainer_1caz0_82 {
+  width: 100px;
+  height: 30px;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/ProductListItem/ProductListItem.module.scss">._categoryName_1rc01_1 {
+  font-size: 22px;
+  color: rgb(172, 172, 172);
+  margin: 0 0 20px 0;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/ProductList/ProductList.module.scss">._list_j7ep5_1 {
+  padding: 0 10px;
+  margin-top: 70px;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/pages/StartPage/StartPage.module.scss">._preloader_am9i4_1 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+._preloader_done_am9i4_13 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 1;
+  transition: 1s all;
+  opacity: 0;
+  visibility: hidden;
+}
+
+._loader_am9i4_26 {
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+._loader_done_am9i4_35 {
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s all;
+  opacity: 0;
+  visibility: hidden;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/components/OrderTypes/OrderTypes.module.scss">._page_1oxhd_1 {
+  margin: 50px auto;
+  padding: 20px;
+}
+
+._container_1oxhd_6 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  row-gap: 30px;
+}
+
+._text_1oxhd_14 {
+  color: #000;
+  text-decoration: none;
+}
+
+._img_container_1oxhd_19 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid #000;
+  border-radius: 20px;
+  width: 250px;
+  height: 150px;
+  background-color: lightgrey;
+}</style><style type="text/css" data-vite-dev-id="/Users/vadimnikitin/Desktop/ENVELOPE/envelope-app/src/App.module.scss">* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
+
+body {
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+  height: var(--tg-viewport-height);
+}
+
+._app_1gq4a_16 {
+  position: absolute;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}</style></head>
+  <body cz-shortcut-listen="true">
+    <div id="root"><div class="_app_1gq4a_16"><div class="_list_12umu_1"><a class="_categoryActive_12umu_23" href="http://localhost:5173/1/1/products#%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA%D0%B8">Завтраки</a><a class="_category_12umu_11" href="http://localhost:5173/1/1/products#%D0%A1%D0%B0%D0%BB%D0%B0%D1%82%D1%8B">Салаты</a><a class="_category_12umu_11" href="http://localhost:5173/1/1/products#%D0%94%D0%B5%D1%81%D0%B5%D1%80%D1%82%D1%8B">Десерты</a><a class="_category_12umu_11" href="http://localhost:5173/1/1/products#%D0%A1%D1%83%D0%BF%D1%8B">Супы</a><a class="_category_12umu_11" href="http://localhost:5173/1/1/products#%D0%93%D1%80%D0%B8%D0%BB%D1%8C">Гриль</a><a class="_category_12umu_11" href="http://localhost:5173/1/1/products#%D0%9D%D0%B0%D0%BF%D0%B8%D1%82%D0%BA%D0%B8">Напитки</a><a class="_category_12umu_11" href="http://localhost:5173/1/1/products#%D0%93%D0%BE%D1%80%D1%8F%D1%87%D0%B5%D0%B5">Горячее</a></div><div class="_list_j7ep5_1"><div><h3 id="Завтраки" class="_categoryName_1rc01_1">Завтраки</h3><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Яичница с беконом</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/40">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Авокадо тост</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/39">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">950 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Французский тост</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/38">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">700 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Гранола с йогуртом</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/37">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">800 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Омлет с овощами</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/36">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">650 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div><div><h3 id="Салаты" class="_categoryName_1rc01_1">Салаты</h3><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Капрезе</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/35">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">700 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Салат с ростбифом</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/34">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1350 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Ассорти из морепродуктов</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/33">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Греческий салат</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/32">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">650 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div><div><h3 id="Десерты" class="_categoryName_1rc01_1">Десерты</h3><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Чизкейк Нью-Йорк</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/30">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1350 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Панакота с ягодами</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/29">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">950 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Фруктовый салат</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/28">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">800 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Шоколадный фондан</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/27">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">100 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Тирамису</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/26">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div><div><h3 id="Супы" class="_categoryName_1rc01_1">Супы</h3><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Чечевичный суп</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/25">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">100 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Мисо-суп</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/24">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Гороховый суп</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/23">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">900 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Куриный бульон</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/22">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">800 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Томатный суп</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/21">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">650 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div><div><h3 id="Гриль" class="_categoryName_1rc01_1">Гриль</h3><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Шашлык из свинины</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/20">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">100 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Бургер с говяжим фаршем</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/19">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">110 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Лосось на гриле</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/18">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1350 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><img class="_img_1caz0_33" src="./Web App_files/default_img.png"></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Куриные крылья BBQ</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/17">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">950 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Стейк из говядины</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/16">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div><div><h3 id="Напитки" class="_categoryName_1rc01_1">Напитки</h3><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Черный чай с лимоном</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/15">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">600 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Коктейль Пина Колада</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/14">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">110 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Лимонад классический</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/13">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">700 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Эспрессо</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/12">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">600 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Красное вино</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/11">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1350 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Смузи с малиной</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/10">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">950 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Чай зеленый</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/9">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">550 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Мохито</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/8">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Фреш апельсиновый</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/7">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">850 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Капучино</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/6">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">650 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div><div><h3 id="Горячее" class="_categoryName_1rc01_1">Горячее</h3><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Лазанья</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/5">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Ризотто с грибами</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/4">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">990 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Карри с курицей</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/3">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">800 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Стейк с картошкой</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/2">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1550 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div><div class="_product_1caz0_25"><div><div class="_img_1caz0_33"></div></div><div class="_titleDesc_1caz0_42"><div class="_title_1caz0_42">Паста Болоньезе</div><a class="_description_1caz0_56" href="http://localhost:5173/10/1/products/1">Подробнее...</a></div><div class="_purchase_1caz0_62"><span class="_price_1caz0_70">1200 руб</span><div class="_addButtonContainer_1caz0_76"><button class="_add_cw0o6_1">Добавить</button></div></div></div></div></div></div></div>
+    <script type="module" src="./Web App_files/main.tsx"></script>
+  
+
+</body></html>

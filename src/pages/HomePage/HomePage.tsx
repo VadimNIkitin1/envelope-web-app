@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
@@ -11,10 +11,8 @@ import { useAppNavigate } from '../../hooks/useAppNavigate';
 import { addTgUser, getCart } from '../../store/cartSlice';
 import { getProducts } from '../../store/productsSlice';
 import { getCategories } from '../../store/categoriesSlice';
-import style from './HomePage.module.scss';
 
 const HomePage = () => {
-  const [preloader, setPreloader] = useState(true);
   const dispatch = useAppDispatch();
   const { goToForm } = useAppNavigate();
   const { tg, id, first_name, last_name, username, is_premium } = useTelegram();
@@ -22,7 +20,6 @@ const HomePage = () => {
   const { cart_items, render } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
-    dispatch(getCategories());
     dispatch(getProducts());
     dispatch(
       addTgUser({
@@ -33,6 +30,7 @@ const HomePage = () => {
         is_premium: !is_premium ? false : is_premium,
       })
     );
+    dispatch(getCategories());
   }, []);
 
   useEffect(() => {
@@ -55,26 +53,11 @@ const HomePage = () => {
     };
   }, [cart_items]);
 
-  setTimeout(() => {
-    setPreloader(false);
-  }, 1000);
-
   return (
-    <div>
-      {preloader ? (
-        <div className={style.preloader}>
-          <div className={style.loader}>ENVELOPE</div>
-        </div>
-      ) : (
-        <>
-          <div className={style.preloader_done}>
-            <div className={style.loader_done}>ENVELOPE</div>
-          </div>
-          <CategoriesList />
-          <ProductList />
-        </>
-      )}
-    </div>
+    <>
+      <CategoriesList />
+      <ProductList />
+    </>
   );
 };
 

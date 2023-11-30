@@ -1,0 +1,45 @@
+.preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+}
+
+.preloader_done {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 1;
+  transition: 1s all;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader {
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader_done {
+  color: #fff;
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s all;
+  opacity: 0;
+  visibility: hidden;
+}
