@@ -21,6 +21,9 @@ export interface IProduct {
     id: number;
     name: string;
   };
+  delivery: boolean;
+  takeaway: boolean;
+  dinein: boolean;
   kilocalories: number;
   proteins: number;
   fats: number;
