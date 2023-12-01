@@ -20,16 +20,13 @@ const HomePage = () => {
     dispatch(getCart());
   }, [render]);
 
-  useEffect(() => {
-    const handleBackButton = dispatch(clearCart());
-    tg.BackButton.show().onClick(handleBackButton);
-    return () => {
-      tg.BackButton.offClick(handleBackButton);
-    };
-  }, []);
+  const handleBackButton = () => {
+    goToStartPage();
+    dispatch(clearCart());
+  };
 
   useEffect(() => {
-    tg.BackButton.show().onClick(goToStartPage);
+    tg.BackButton.show().onClick(handleBackButton);
     if (cart_items.length !== 0) {
       tg.MainButton.setParams({
         text: 'Перейти в корзину',
@@ -41,7 +38,7 @@ const HomePage = () => {
     }
     return () => {
       tg.MainButton.offClick(goToForm);
-      tg.BackButton.show().offClick(goToStartPage);
+      tg.BackButton.offClick(handleBackButton);
     };
   }, [cart_items]);
 
