@@ -21,6 +21,7 @@ export interface IProduct {
     id: number;
     name: string;
   };
+  popular: boolean;
   delivery: boolean;
   takeaway: boolean;
   dinein: boolean;

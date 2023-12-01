@@ -36,15 +36,20 @@ const CategoriesList = () => {
       {categories === undefined || categories.length === 0 ? (
         <p className={style.message}>Нет добавленых элементов</p>
       ) : (
-        categories.map((category, index) => (
-          <a
-            key={category.id}
-            className={activeTab === index ? style.categoryActive : style.category}
-            href={`#${category.name}`}
-          >
-            {category.name}
+        <>
+          <a href="#Популярное" className={activeTab === 0 ? style.categoryActive : style.category}>
+            Популярное
           </a>
-        ))
+          {categories.map((category, index) => (
+            <a
+              key={category.id}
+              className={activeTab === index + 1 ? style.categoryActive : style.category}
+              href={`#${category.name}`}
+            >
+              {category.name}
+            </a>
+          ))}
+        </>
       )}
     </div>
   );

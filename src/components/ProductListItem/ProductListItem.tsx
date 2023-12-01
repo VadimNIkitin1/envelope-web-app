@@ -45,6 +45,7 @@ const ProductListItem = ({ category, index }) => {
       ) : (
         filteredProducts(products)
           .filter((prod) => prod.category_id === category.id)
+          .filter((prod) => prod.popular === false)
           .map((prod) => (
             <ProductItem
               prod={prod}

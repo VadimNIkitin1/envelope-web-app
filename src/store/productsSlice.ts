@@ -28,6 +28,7 @@ const initialState: IProducts = {
       id: 0,
       name: '',
     },
+    popular: false,
     delivery: false,
     takeaway: false,
     dinein: false,

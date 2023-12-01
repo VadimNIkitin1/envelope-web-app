@@ -1,18 +1,35 @@
 import { useAppSelector } from '../../hooks/useAppSelector';
+import ProductItem from '../ProductItem/ProductItem';
 import { ProductListItem } from '../ProductListItem/ProductListItem';
 import style from './ProductList.module.scss';
 
 const ProductList = () => {
   const categories = useAppSelector((state) => state.categories.categories);
+  const products = useAppSelector((state) => state.products.products);
+  const cart = useAppSelector((state) => state.cart.cart_items);
+
+  const popularProducts = products.filter((product) => product.popular === true);
 
   return (
     <div className={style.list}>
       {categories === undefined || categories.length === 0 ? (
         <p className={style.message}>Нет в наличии</p>
       ) : (
-        categories.map((category, index) => (
-          <ProductListItem category={category} index={index} key={category.name} />
-        ))
+        <>
+          <h3 id={`Популярное`} className={style.categoryName}>
+            Популярное
+          </h3>
+          {popularProducts.map((prod) => (
+            <ProductItem
+              prod={prod}
+              key={prod.id}
+              ifCart={cart.filter((i) => i.id === prod.id)[0]}
+            />
+          ))}
+          {categories.map((category, index) => (
+            <ProductListItem category={category} index={index} key={category.name} />
+          ))}
+        </>
       )}
     </div>
   );
