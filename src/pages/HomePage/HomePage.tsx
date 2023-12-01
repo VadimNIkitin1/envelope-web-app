@@ -14,17 +14,18 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const { goToForm, goToStartPage } = useAppNavigate();
   const { tg } = useTelegram();
-
   const { cart_items, render } = useAppSelector((state) => state.cart);
+
+  const handleBackButton = dispatch(clearCart());
 
   useEffect(() => {
     dispatch(getCart());
   }, [render]);
 
   useEffect(() => {
-    tg.BackButton.onClick(dispatch(clearCart()));
+    tg.BackButton.onClick(handleBackButton);
     return () => {
-      tg.BackButton.offClick(dispatch(clearCart()));
+      tg.BackButton.offClick(handleBackButton);
     };
   }, []);
 
