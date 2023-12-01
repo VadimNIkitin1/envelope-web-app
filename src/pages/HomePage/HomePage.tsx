@@ -26,7 +26,7 @@ const HomePage = () => {
     return () => {
       tg.BackButton.offClick(handleBackButton);
     };
-  }, []);
+  }, [render]);
 
   useEffect(() => {
     tg.BackButton.show().onClick(goToStartPage);
