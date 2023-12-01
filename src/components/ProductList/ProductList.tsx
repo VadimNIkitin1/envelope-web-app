@@ -8,8 +8,6 @@ const ProductList = () => {
   const products = useAppSelector((state) => state.products.products);
   const cart = useAppSelector((state) => state.cart.cart_items);
 
-  const popularProducts = products.filter((product) => product.popular === true);
-
   return (
     <div className={style.list}>
       {categories === undefined || categories.length === 0 ? (
@@ -19,7 +17,8 @@ const ProductList = () => {
           <h3 id={`Популярное`} className={style.categoryName}>
             Популярное
           </h3>
-          {popularProducts
+          {products
+            .filter((product) => product.popular === true)
             .filter((prod) => prod.dinein === true)
             .filter((prod) => prod.takeaway === true)
             .filter((prod) => prod.delivery === true)
