@@ -9,10 +9,53 @@
 }
 
 .deliveryText {
-  color: white;
-  background-color: #5fa5f9;
+  color: #000;
+  border: 1px solid #000;
   border-radius: 5px;
   text-align: center;
   padding: 5px;
-  margin: 3px 0;
+  margin-bottom: 20px;
+  width: 60%;
+}
+
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+  font-size: 25px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.plus {
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 3px 5px;
+  font-weight: 700;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: var(--tg-theme-button-color);
+}
+
+.minus {
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 3px 5px;
+  font-weight: 700;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
+  border: none;
+  outline: none;
+  background: red;
+  border-radius: 10px;
 }

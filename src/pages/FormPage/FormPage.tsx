@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
@@ -14,6 +14,7 @@ import { useTelegram } from '../../hooks/useTelegram';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
 import { Button } from '../../ui/Button/Button';
 import { ORDER_TYPE } from '../../components/OrderTypes/OrderTypes.data';
+import { GiForkKnifeSpoon } from 'react-icons/gi';
 
 const FormPage = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const FormPage = () => {
   const { goBack } = useAppNavigate();
   const { render, cart_items, total_price } = useAppSelector((state) => state.cart);
   const order_type = useAppSelector((state) => state.activeTab.order_type);
+  const [quantityTools, setQuantityTools] = useState(cart_items.length);
 
   useEffect(() => {
     dispatch(getCart());
@@ -67,7 +69,36 @@ const FormPage = () => {
           ))
         )}
       </div>
-      <h3 style={{ marginBottom: '20px' }}>Заказ на сумму {total_price} руб</h3>
+      {order_type === ORDER_TYPE.DELIVERY && (
+        <div className={style.tools}>
+          <div style={{ display: 'flex', alignItems: 'center', columnGap: '10px' }}>
+            <GiForkKnifeSpoon fontSize={'35px'} />
+            <p>Приборы</p>
+          </div>
+          {quantityTools > 0 ? (
+            <div className={style.counter}>
+              <button
+                className={style.minus}
+                children={'➖'}
+                onClick={() => setQuantityTools(quantityTools - 1)}
+              />
+              <p className={style.quantity}>{quantityTools}</p>
+              <button
+                className={style.plus}
+                children={'➕'}
+                onClick={() => setQuantityTools(quantityTools + 1)}
+              />
+            </div>
+          ) : (
+            <Button
+              view="add"
+              children="Добавить"
+              onClick={() => setQuantityTools(quantityTools + 1)}
+            />
+          )}
+        </div>
+      )}
+      <h3>Заказ на сумму {total_price} руб</h3>
       {order_type === ORDER_TYPE.DELIVERY && (
         <h4 className={style.deliveryText}>
           Доставка {total_price < 800 ? '249р 🚚' : 'бесплатно 😊'}
