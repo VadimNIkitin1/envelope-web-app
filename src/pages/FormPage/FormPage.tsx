@@ -43,17 +43,17 @@ const FormPage = () => {
       <div className={style.orderTitle}>
         {order_type === ORDER_TYPE.DINEIN && (
           <h1>
-            Ваш заказ <p>(В зале) </p>
+            Ваш заказ <p style={{ fontSize: '14px' }}>(В зале) </p>
           </h1>
         )}
         {order_type === ORDER_TYPE.TAKEAWAY && (
           <h1>
-            Ваш заказ <p>(Самовывоз)</p>
+            Ваш заказ <p style={{ fontSize: '14px' }}>(Самовывоз)</p>
           </h1>
         )}
         {order_type === ORDER_TYPE.DELIVERY && (
           <h1>
-            Ваш заказ <p>(Доставка)</p>
+            Ваш заказ <p style={{ fontSize: '14px' }}>(Доставка)</p>
           </h1>
         )}
         <Button onClick={() => onClear()} view="trash" />
