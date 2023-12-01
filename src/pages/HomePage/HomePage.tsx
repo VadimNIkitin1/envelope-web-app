@@ -8,37 +8,21 @@ import ProductList from '../../components/ProductList/ProductList';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
 
-import { addTgUser, getCart } from '../../store/cartSlice';
-import { getProducts } from '../../store/productsSlice';
-import { getCategories } from '../../store/categoriesSlice';
+import { getCart } from '../../store/cartSlice';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const { goToForm } = useAppNavigate();
-  const { tg, id, first_name, last_name, username, is_premium } = useTelegram();
+  const { goToForm, goBack } = useAppNavigate();
+  const { tg } = useTelegram();
 
   const { cart_items, render } = useAppSelector((state) => state.cart);
-
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(
-      addTgUser({
-        tg_user_id: !id ? 1132630506 : id,
-        first_name: !first_name ? '-' : first_name,
-        last_name: !last_name ? '-' : last_name,
-        username: !username ? '-' : username,
-        is_premium: !is_premium ? false : is_premium,
-      })
-    );
-    dispatch(getCategories());
-  }, []);
 
   useEffect(() => {
     dispatch(getCart());
   }, [render]);
 
   useEffect(() => {
-    tg.BackButton.hide();
+    tg.BackButton.show().onClick(goBack);
     if (cart_items.length !== 0) {
       tg.MainButton.setParams({
         text: 'Перейти в корзину',
@@ -50,6 +34,7 @@ const HomePage = () => {
     }
     return () => {
       tg.MainButton.offClick(goToForm);
+      tg.BackButton.show().offClick(goBack);
     };
   }, [cart_items]);
 
