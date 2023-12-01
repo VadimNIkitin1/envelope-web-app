@@ -16,13 +16,12 @@ const HomePage = () => {
   const { tg } = useTelegram();
   const { cart_items, render } = useAppSelector((state) => state.cart);
 
-  const handleBackButton = dispatch(clearCart());
-
   useEffect(() => {
     dispatch(getCart());
   }, [render]);
 
   useEffect(() => {
+    const handleBackButton = dispatch(clearCart());
     tg.BackButton.onClick(handleBackButton);
     return () => {
       tg.BackButton.offClick(handleBackButton);
