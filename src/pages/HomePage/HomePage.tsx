@@ -22,7 +22,14 @@ const HomePage = () => {
   }, [render]);
 
   useEffect(() => {
-    tg.BackButton.show().onClick(goToStartPage).onClick(dispatch(clearCart()));
+    tg.BackButton.onClick(dispatch(clearCart()));
+    return () => {
+      tg.BackButton.offClick(dispatch(clearCart()));
+    };
+  }, []);
+
+  useEffect(() => {
+    tg.BackButton.show().onClick(goToStartPage);
     if (cart_items.length !== 0) {
       tg.MainButton.setParams({
         text: 'Перейти в корзину',
@@ -34,7 +41,7 @@ const HomePage = () => {
     }
     return () => {
       tg.MainButton.offClick(goToForm);
-      tg.BackButton.show().offClick(goToStartPage).offClick(dispatch(clearCart()));
+      tg.BackButton.show().offClick(goToStartPage);
     };
   }, [cart_items]);
 
