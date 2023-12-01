@@ -27,7 +27,7 @@ const ProductListItem = ({ category, index }) => {
   };
 
   const [ref] = useInView({
-    threshold: 0.5,
+    threshold: 0,
     onChange(inView) {
       if (inView) {
         dispatch(toggleTabs(index));
