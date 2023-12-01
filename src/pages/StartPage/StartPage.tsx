@@ -11,7 +11,7 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 
 const StartPage = () => {
   const dispatch = useAppDispatch();
-  const { id, first_name, last_name, username, is_premium } = useTelegram();
+  const { tg, id, first_name, last_name, username, is_premium } = useTelegram();
   const [preloader, setPreloader] = useState(true);
   const splashScreen = useAppSelector((state) => state.activeTab.showSplashScreen);
 
@@ -27,6 +27,10 @@ const StartPage = () => {
       })
     );
     dispatch(getCategories());
+  }, []);
+
+  useEffect(() => {
+    tg.BackButton.hide();
   }, []);
 
   setTimeout(() => {
