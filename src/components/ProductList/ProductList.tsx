@@ -19,13 +19,17 @@ const ProductList = () => {
           <h3 id={`Популярное`} className={style.categoryName}>
             Популярное
           </h3>
-          {popularProducts.map((prod) => (
-            <ProductItem
-              prod={prod}
-              key={prod.id}
-              ifCart={cart.filter((i) => i.id === prod.id)[0]}
-            />
-          ))}
+          {popularProducts
+            .filter((prod) => prod.dinein === true)
+            .filter((prod) => prod.takeaway === true)
+            .filter((prod) => prod.delivery === true)
+            .map((prod) => (
+              <ProductItem
+                prod={prod}
+                key={prod.id}
+                ifCart={cart.filter((i) => i.id === prod.id)[0]}
+              />
+            ))}
           {categories.map((category, index) => (
             <ProductListItem category={category} index={index} key={category.name} />
           ))}
