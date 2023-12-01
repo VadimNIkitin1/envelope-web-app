@@ -30,6 +30,7 @@ const StartPage = () => {
 
   useEffect(() => {
     tg.BackButton.hide();
+    tg.MainButton.hide();
   }, []);
 
   setTimeout(() => {
