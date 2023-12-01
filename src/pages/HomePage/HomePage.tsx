@@ -8,7 +8,7 @@ import ProductList from '../../components/ProductList/ProductList';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
 
-import { getCart } from '../../store/cartSlice';
+import { clearCart, getCart } from '../../store/cartSlice';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const HomePage = () => {
   }, [render]);
 
   useEffect(() => {
-    tg.BackButton.show().onClick(goToStartPage);
+    tg.BackButton.show().onClick(goToStartPage).onClick(dispatch(clearCart()));
     if (cart_items.length !== 0) {
       tg.MainButton.setParams({
         text: 'Перейти в корзину',
@@ -34,7 +34,7 @@ const HomePage = () => {
     }
     return () => {
       tg.MainButton.offClick(goToForm);
-      tg.BackButton.show().offClick(goToStartPage);
+      tg.BackButton.show().offClick(goToStartPage).offClick(dispatch(clearCart()));
     };
   }, [cart_items]);
 
