@@ -22,7 +22,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const handleBackButton = dispatch(clearCart());
-    tg.BackButton.onClick(handleBackButton);
+    tg.BackButton.show().onClick(handleBackButton);
     return () => {
       tg.BackButton.offClick(handleBackButton);
     };
