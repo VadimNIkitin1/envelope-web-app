@@ -5,15 +5,20 @@ export const useAppNavigate = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(`/${!schema ? 10 : schema}/${!store_id ? 1 : store_id}/`);
+    navigate(`/${!schema ? 10 : schema}/${!store_id ? 1 : store_id}/products`);
   };
 
   const goToForm = () => {
     navigate(`/${!schema ? 10 : schema}/${!store_id ? 1 : store_id}/form`);
   };
 
+  const goToStartPage = () => {
+    navigate(`/${!schema ? 10 : schema}/${!store_id ? 1 : store_id}/`);
+  };
+
   return {
     goBack,
     goToForm,
+    goToStartPage,
   };
 };

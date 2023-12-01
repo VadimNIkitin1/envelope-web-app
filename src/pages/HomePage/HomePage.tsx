@@ -12,7 +12,7 @@ import { getCart } from '../../store/cartSlice';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const { goToForm, goBack } = useAppNavigate();
+  const { goToForm, goToStartPage } = useAppNavigate();
   const { tg } = useTelegram();
 
   const { cart_items, render } = useAppSelector((state) => state.cart);
@@ -22,7 +22,7 @@ const HomePage = () => {
   }, [render]);
 
   useEffect(() => {
-    tg.BackButton.show().onClick(goBack);
+    tg.BackButton.show().onClick(goToStartPage);
     if (cart_items.length !== 0) {
       tg.MainButton.setParams({
         text: 'Перейти в корзину',
@@ -34,7 +34,7 @@ const HomePage = () => {
     }
     return () => {
       tg.MainButton.offClick(goToForm);
-      tg.BackButton.show().offClick(goBack);
+      tg.BackButton.show().offClick(goToStartPage);
     };
   }, [cart_items]);
 
