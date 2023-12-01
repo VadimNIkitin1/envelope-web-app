@@ -28,6 +28,8 @@ export interface ISubmitForm {
   customer_phone: number | string;
   tg_user_id?: number | string;
   store_id?: number | string;
+  delivery_city?: string;
+  delivery_address?: string;
 }
 
 export interface IAddTgUser {

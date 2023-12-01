@@ -13,12 +13,14 @@ import { useTelegram } from '../../hooks/useTelegram';
 
 import { useAppNavigate } from '../../hooks/useAppNavigate';
 import { Button } from '../../ui/Button/Button';
+import { ORDER_TYPE } from '../../components/OrderTypes/OrderTypes.data';
 
 const FormPage = () => {
   const dispatch = useAppDispatch();
   const { tg } = useTelegram();
   const { goBack } = useAppNavigate();
   const { render, cart_items, total_price } = useAppSelector((state) => state.cart);
+  const order_type = useAppSelector((state) => state.activeTab.order_type);
 
   useEffect(() => {
     dispatch(getCart());
@@ -39,7 +41,9 @@ const FormPage = () => {
   return (
     <div className={style.container}>
       <div className={style.orderTitle}>
-        <h1>Ваш заказ</h1>
+        {order_type === ORDER_TYPE.DINEIN && <h1>Ваш заказ(В зале)</h1>}
+        {order_type === ORDER_TYPE.TAKEAWAY && <h1>Ваш заказ(Самовывоз)</h1>}
+        {order_type === ORDER_TYPE.DELIVERY && <h1>Ваш заказ(Доставка)</h1>}
         <Button onClick={() => onClear()} view="trash" />
       </div>
       <div>

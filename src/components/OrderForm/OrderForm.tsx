@@ -69,6 +69,22 @@ const OrderForm = ({ cart }) => {
         })}
       />
       {errors.customer_phone && <p className={style.errorMsg}>{errors.customer_phone.message}</p>}
+      <input
+        className={style.input}
+        type="text"
+        placeholder="Город"
+        {...register('delivery_city')}
+      />
+      {errors.delivery_city && <p className={style.errorMsg}>{errors.delivery_city.message}</p>}
+      <input
+        className={style.input}
+        type="text"
+        placeholder="Адрес"
+        {...register('delivery_address')}
+      />
+      {errors.delivery_address && (
+        <p className={style.errorMsg}>{errors.delivery_address.message}</p>
+      )}
       {!id && <Button onClick={handleSubmit(onSubmit)} children="Заказать" view="add" />}
     </form>
   );
