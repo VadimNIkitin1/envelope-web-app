@@ -8,14 +8,15 @@ interface IButton {
   children?: ReactNode;
   onClick: () => void;
   view: string;
-  style?: any;
+  styles?: any;
 }
 
-const Button: FC<IButton> = ({ children, view, onClick, ...props }) => {
+const Button: FC<IButton> = ({ children, view, onClick, styles, ...props }) => {
   return (
     <button
       {...props}
       onClick={onClick}
+      style={styles}
       className={clsx(
         style.add,
         view === 'plus' && style.plus,

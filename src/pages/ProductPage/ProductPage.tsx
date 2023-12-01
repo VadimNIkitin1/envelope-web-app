@@ -83,7 +83,7 @@ const ProductPage = () => {
               onClick={() => dispatch(addProduct(id))}
               children={'Добавить'}
               view="add"
-              style={{ fontSize: '22px' }}
+              styles={{ fontSize: '22px' }}
             />
           </div>
         )}

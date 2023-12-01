@@ -11,10 +11,12 @@ import style from './OrderForm.module.scss';
 import { Button } from '../../ui/Button/Button';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { ORDER_TYPE } from '../OrderTypes/OrderTypes.data';
+import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
   const { tg, onClose, id } = useTelegram();
+  const { goBack } = useAppNavigate();
   const order_type = useAppSelector((state) => state.activeTab.order_type);
 
   const {
@@ -154,6 +156,7 @@ const OrderForm = ({ cart }) => {
         <p className={style.errorMsg}>{errors?.customer_comment.message}</p>
       )}
       {!id && <Button onClick={handleSubmit(onSubmit)} children="Заказать" view="add" />}
+      {!id && <Button onClick={goBack} children="Назад" view="add" />}
     </form>
   );
 };

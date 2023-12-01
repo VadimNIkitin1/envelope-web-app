@@ -67,10 +67,12 @@ const FormPage = () => {
           ))
         )}
       </div>
-      <h3>Заказ на сумму {total_price} руб</h3>
-      <h4 className={style.deliveryText}>
-        Доставка {total_price < 800 ? '249р 🚚' : 'бесплатно 😊'}
-      </h4>
+      <h3 style={{ marginBottom: '20px' }}>Заказ на сумму {total_price} руб</h3>
+      {order_type === ORDER_TYPE.DELIVERY && (
+        <h4 className={style.deliveryText}>
+          Доставка {total_price < 800 ? '249р 🚚' : 'бесплатно 😊'}
+        </h4>
+      )}
       <OrderForm cart={cart_items} />
       {order_type === ORDER_TYPE.TAKEAWAY && (
         <>

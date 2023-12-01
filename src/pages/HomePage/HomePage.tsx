@@ -9,11 +9,12 @@ import { useTelegram } from '../../hooks/useTelegram';
 import { useAppNavigate } from '../../hooks/useAppNavigate';
 
 import { clearCart, getCart } from '../../store/cartSlice';
+import { Button } from '../../ui/Button/Button';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const { goToForm, goToStartPage } = useAppNavigate();
-  const { tg } = useTelegram();
+  const { tg, id } = useTelegram();
   const { cart_items, render } = useAppSelector((state) => state.cart);
 
   useEffect(() => {
@@ -45,6 +46,17 @@ const HomePage = () => {
   return (
     <>
       <CategoriesList />
+      {!id && (
+        <Button onClick={goToForm} children="К заказу" view="add" styles={{ marginTop: '70px' }} />
+      )}
+      {!id && (
+        <Button
+          onClick={handleBackButton}
+          children="Назад"
+          view="add"
+          styles={{ marginTop: '70px' }}
+        />
+      )}
       <ProductList />
     </>
   );
