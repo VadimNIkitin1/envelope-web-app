@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import style from './StartPage.module.scss';
 import OrderTypes from '../../components/OrderTypes/OrderTypes';
 import { getProducts } from '../../store/productsSlice';
@@ -6,16 +6,16 @@ import { addTgUser } from '../../store/cartSlice';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useTelegram } from '../../hooks/useTelegram';
 import { getCategories } from '../../store/categoriesSlice';
-import { showSplashScreen } from '../../store/activeSlice';
+import { setSplashScreen } from '../../store/activeSlice';
 import { useAppSelector } from '../../hooks/useAppSelector';
 
 const StartPage = () => {
   const dispatch = useAppDispatch();
+  const splashScreen = useAppSelector((state) => state.activeTab.splashScreen);
   const { tg, id, first_name, last_name, username, is_premium } = useTelegram();
-  const [preloader, setPreloader] = useState(true);
-  const splashScreen = useAppSelector((state) => state.activeTab.showSplashScreen);
 
   useEffect(() => {
+    dispatch(getCategories());
     dispatch(getProducts());
     dispatch(
       addTgUser({
@@ -26,7 +26,6 @@ const StartPage = () => {
         is_premium: !is_premium ? false : is_premium,
       })
     );
-    dispatch(getCategories());
   }, []);
 
   useEffect(() => {
@@ -34,19 +33,18 @@ const StartPage = () => {
   }, []);
 
   setTimeout(() => {
-    setPreloader(false);
-    dispatch(showSplashScreen(true));
+    dispatch(setSplashScreen(false));
   }, 1000);
 
   return (
     <div>
-      {preloader && !splashScreen ? (
-        <div className={style.preloader}>
+      {splashScreen ? (
+        <div className={style.splashScreen}>
           <div className={style.loader}>ENVELOPE</div>
         </div>
       ) : (
         <>
-          <div className={style.preloader_done}>
+          <div className={style.splashScreen_done}>
             <div className={style.loader_done}>ENVELOPE</div>
           </div>
           <OrderTypes />

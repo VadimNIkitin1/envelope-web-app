@@ -6,6 +6,7 @@ const slice = createSlice({
     active: 0,
     order_type: '',
     showSplashScreen: false,
+    splashScreen: true,
   },
   reducers: {
     toggleTabs(state, action) {
@@ -14,12 +15,12 @@ const slice = createSlice({
     checkOrderType(state, action) {
       state.order_type = action.payload;
     },
-    showSplashScreen(state, action) {
-      state.showSplashScreen = action.payload;
+    setSplashScreen(state, action) {
+      state.splashScreen = action.payload;
     },
   },
 });
 
-export const { toggleTabs, checkOrderType, showSplashScreen } = slice.actions;
+export const { toggleTabs, checkOrderType, setSplashScreen } = slice.actions;
 
 export default slice.reducer;
