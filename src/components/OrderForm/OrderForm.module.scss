@@ -13,8 +13,23 @@
   font-size: 16px;
 }
 
+.textarea {
+  border: none;
+  background-color: #a6a6a6;
+  border-radius: 5px;
+  padding: 10px 10px;
+  color: white;
+  margin: 1px 0;
+  font-size: 16px;
+  resize: none;
+}
+
 .errorMsg {
   color: red;
+}
+
+textarea::-webkit-input-placeholder {
+  color: white;
 }
 
 input::-webkit-input-placeholder {

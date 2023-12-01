@@ -30,6 +30,8 @@ export interface ISubmitForm {
   store_id?: number | string;
   delivery_city?: string;
   delivery_address?: string;
+  customer_comment?: string;
+  customer_table?: number | string;
 }
 
 export interface IAddTgUser {

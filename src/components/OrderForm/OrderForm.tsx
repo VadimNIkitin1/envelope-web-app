@@ -9,10 +9,13 @@ import { useTelegram } from '../../hooks/useTelegram';
 import style from './OrderForm.module.scss';
 
 import { Button } from '../../ui/Button/Button';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { ORDER_TYPE } from '../OrderTypes/OrderTypes.data';
 
 const OrderForm = ({ cart }) => {
   const dispatch = useAppDispatch();
   const { tg, onClose, id } = useTelegram();
+  const order_type = useAppSelector((state) => state.activeTab.order_type);
 
   const {
     register,
@@ -52,38 +55,103 @@ const OrderForm = ({ cart }) => {
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-      <input
-        className={style.input}
-        placeholder="Имя"
-        {...register('customer_name', {
-          required: 'Это поле обязательно для заполнения!',
-        })}
+      {order_type === ORDER_TYPE.DINEIN && (
+        <>
+          <input
+            className={style.input}
+            placeholder="Имя"
+            {...register('customer_name', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+          <p className={style.errorMsg}>{errors?.customer_name && errors.customer_name.message}</p>
+          <input
+            className={style.input}
+            type="number"
+            placeholder="Телефон"
+            {...register('customer_phone', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+          <input
+            className={style.input}
+            placeholder="Стол №"
+            type="number"
+            {...register('customer_table', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+          <p className={style.errorMsg}>
+            {errors?.customer_table && errors.customer_table.message}
+          </p>
+        </>
+      )}
+      {order_type === ORDER_TYPE.TAKEAWAY && (
+        <>
+          <input
+            className={style.input}
+            placeholder="Имя"
+            {...register('customer_name', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+          <p className={style.errorMsg}>{errors?.customer_name && errors.customer_name.message}</p>
+          <input
+            className={style.input}
+            type="number"
+            placeholder="Телефон"
+            {...register('customer_phone', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+        </>
+      )}
+      {order_type === ORDER_TYPE.DELIVERY && (
+        <>
+          <input
+            className={style.input}
+            placeholder="Имя"
+            {...register('customer_name', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+          <p className={style.errorMsg}>{errors?.customer_name && errors.customer_name.message}</p>
+          <input
+            className={style.input}
+            type="number"
+            placeholder="Телефон"
+            {...register('customer_phone', {
+              required: 'Это поле обязательно для заполнения!',
+            })}
+          />
+          <p className={style.errorMsg}>
+            {errors?.customer_phone && errors.customer_phone.message}
+          </p>
+          <input
+            className={style.input}
+            type="text"
+            placeholder="Город"
+            {...register('delivery_city')}
+          />
+          <p className={style.errorMsg}>{errors?.delivery_city && errors.delivery_city.message}</p>
+          <input
+            className={style.input}
+            type="text"
+            placeholder="Адрес"
+            {...register('delivery_address')}
+          />
+          <p className={style.errorMsg}>
+            {errors?.delivery_address && errors.delivery_address.message}
+          </p>
+        </>
+      )}
+      <textarea
+        className={style.textarea}
+        placeholder="Коментарий..."
+        {...register('customer_comment')}
       />
-      {errors?.customer_name && <p className={style.errorMsg}>{errors.customer_name.message}</p>}
-      <input
-        className={style.input}
-        type="number"
-        placeholder="Телефон"
-        {...register('customer_phone', {
-          required: 'Это поле обязательно для заполнения!',
-        })}
-      />
-      {errors.customer_phone && <p className={style.errorMsg}>{errors.customer_phone.message}</p>}
-      <input
-        className={style.input}
-        type="text"
-        placeholder="Город"
-        {...register('delivery_city')}
-      />
-      {errors.delivery_city && <p className={style.errorMsg}>{errors.delivery_city.message}</p>}
-      <input
-        className={style.input}
-        type="text"
-        placeholder="Адрес"
-        {...register('delivery_address')}
-      />
-      {errors.delivery_address && (
-        <p className={style.errorMsg}>{errors.delivery_address.message}</p>
+      {errors.customer_comment && (
+        <p className={style.errorMsg}>{errors?.customer_comment.message}</p>
       )}
       {!id && <Button onClick={handleSubmit(onSubmit)} children="Заказать" view="add" />}
     </form>
